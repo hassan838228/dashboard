@@ -1,0 +1,839 @@
+<%- include("partials/head", {bot, user, path, description, title: "Dashboard" , url, image }) %>
+<%- include("partials/nav", {bot, user, path, title: "Dashboard" }) %>
+
+<div class="dashboard-container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="page-title">Server Dashboard</h1>
+            <p class="page-description">Manage your Discord servers with Cbot's powerful features</p>
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number"><%= bot.guilds.cache.size %></span>
+                        <span class="stat-label">Total Servers</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number"><%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %></span>
+                        <span class="stat-label">Total Users</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number"><%= bot.guilds.cache.filter(g => g.available).size %></span>
+                        <span class="stat-label">Active Servers</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Premium Servers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Server Notification -->
+    <div class="support-notification">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fab fa-discord"></i>
+            </div>
+            <div class="notification-text">
+                <h3>Need Help?</h3>
+                <p>Join our support server for assistance and updates!</p>
+            </div>
+            <a href="/support" class="notification-btn">
+                <i class="fas fa-external-link-alt"></i>
+                Join Support Server
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="section-header">
+            <h2>Quick Actions</h2>
+            <p>Common tasks to get you started</p>
+        </div>
+        
+        <div class="actions-grid">
+            <a href="/invite" class="action-card">
+                <div class="action-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Add to Server</h3>
+                    <p>Invite Cbot to a new Discord server</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="/premium" class="action-card premium-card">
+                <div class="action-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Upgrade to Premium</h3>
+                    <p>Unlock advanced features and higher limits</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="/commands" class="action-card">
+                <div class="action-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div class="action-content">
+                    <h3>View Commands</h3>
+                    <p>Browse all available bot commands</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Servers List -->
+    <div class="servers-section">
+        <div class="section-header">
+            <h2>Your Servers</h2>
+            <p>Select a server to configure Cbot settings</p>
+        </div>
+
+        <% if (user && user.guilds && user.guilds.length > 0) { %>
+            <!-- Active Servers -->
+            <div class="servers-category">
+                <h3 class="category-title">
+                    <i class="fas fa-server"></i>
+                    Available Servers
+                </h3>
+                
+                <div class="servers-grid">
+                    <% user.guilds.filter(g => bot.guilds.cache.has(g.id)).forEach(guild => { %>
+                        <div class="server-card">
+                            <div class="server-icon">
+                                <% if (guild.icon) { %>
+                                    <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" 
+                                         alt="<%= guild.name %>">
+                                <% } else { %>
+                                    <div class="default-icon">
+                                        <%= guild.name.charAt(0).toUpperCase() %>
+                                    </div>
+                                <% } %>
+                                <div class="status-indicator online"></div>
+                            </div>
+                            
+                            <div class="server-info">
+                                <h4 class="server-name"><%= guild.name %></h4>
+                                <p class="server-members">
+                                    <i class="fas fa-users"></i>
+                                    <%= bot.guilds.cache.get(guild.id)?.memberCount || 0 %> members
+                                </p>
+                            </div>
+                            
+                            <div class="server-actions">
+                                <a href="/dashboard/<%= guild.id %>" class="btn-manage">
+                                    <i class="fas fa-cog"></i>
+                                    Manage
+                                </a>
+                                <div class="server-premium-status">
+                                    <i class="fas fa-crown premium-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Servers without bot -->
+            <% const serversWithoutBot = user.guilds.filter(g => !bot.guilds.cache.has(g.id) && (g.permissions & 8) === 8); %>
+            <% if (serversWithoutBot.length > 0) { %>
+                <div class="servers-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Cbot to These Servers
+                    </h3>
+                    
+                    <div class="servers-grid">
+                        <% serversWithoutBot.forEach(guild => { %>
+                            <div class="server-card inactive">
+                                <div class="server-icon">
+                                    <% if (guild.icon) { %>
+                                        <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" 
+                                             alt="<%= guild.name %>">
+                                    <% } else { %>
+                                        <div class="default-icon">
+                                            <%= guild.name.charAt(0).toUpperCase() %>
+                                        </div>
+                                    <% } %>
+                                    <div class="status-indicator offline"></div>
+                                </div>
+                                
+                                <div class="server-info">
+                                    <h4 class="server-name"><%= guild.name %></h4>
+                                    <p class="server-status">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Bot not added
+                                    </p>
+                                </div>
+                                
+                                <div class="server-actions">
+                                    <a href="/invite?guild=<%= guild.id %>" class="btn-invite">
+                                        <i class="fas fa-plus"></i>
+                                        Add Bot
+                                    </a>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+        <% } else { %>
+            <!-- No servers found -->
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>No Servers Found</h3>
+                <p>You don't have any servers yet, or you need to login to Discord.</p>
+                <div class="empty-actions">
+                    <a href="/login" class="btn btn-primary">
+                        <i class="fab fa-discord"></i>
+                        Login with Discord
+                    </a>
+                    <a href="/invite" class="btn btn-outline">
+                        <i class="fas fa-plus"></i>
+                        Invite Bot
+                    </a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<style>
+/* Dashboard Styles */
+.dashboard-container {
+    min-height: calc(100vh - 70px);
+    background: var(--background-primary);
+    padding: 40px 24px;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.header-content {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(88, 101, 242, 0.3);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* Support Notification */
+.support-notification {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.notification-content {
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notification-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.notification-text {
+    flex: 1;
+}
+
+.notification-text h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.notification-text p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.notification-btn {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.notification-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Quick Actions */
+.quick-actions {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.action-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(88, 101, 242, 0.3);
+}
+
+.action-card.premium-card:hover {
+    border-color: rgba(250, 166, 26, 0.3);
+}
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.premium-card .action-icon {
+    background: rgba(250, 166, 26, 0.1);
+    color: var(--warning-color);
+}
+
+.action-content {
+    flex: 1;
+}
+
+.action-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.action-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.action-arrow {
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.action-card:hover .action-arrow {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+/* Servers Section */
+.servers-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.servers-category {
+    margin-bottom: 40px;
+}
+
+.category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-title i {
+    color: var(--primary-color);
+}
+
+.servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.server-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.server-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(88, 101, 242, 0.3);
+}
+
+.server-card.inactive {
+    opacity: 0.7;
+}
+
+.server-card.inactive:hover {
+    border-color: rgba(250, 166, 26, 0.3);
+}
+
+.server-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.server-icon img,
+.default-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.default-icon {
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid var(--background-card);
+}
+
+.status-indicator.online {
+    background: var(--success-color);
+}
+
+.status-indicator.offline {
+    background: var(--text-muted);
+}
+
+.server-info {
+    flex: 1;
+}
+
+.server-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.server-members,
+.server-status {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.server-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-manage,
+.btn-invite {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-manage:hover,
+.btn-invite:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.server-premium-status {
+    width: 32px;
+    height: 32px;
+    background: rgba(250, 166, 26, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.premium-icon {
+    color: var(--warning-color);
+    font-size: 0.875rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    margin-top: 40px;
+}
+
+.empty-icon {
+    width: 100px;
+    height: 100px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+    background: var(--background-tertiary);
+    border-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 24px 16px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .notification-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .servers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .server-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .server-info {
+        text-align: center;
+    }
+    
+    .empty-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .action-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .action-card:hover .action-arrow {
+        transform: rotate(90deg) translateX(4px);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card,
+.action-card,
+.server-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+.action-card:nth-child(1) { animation-delay: 0.1s; }
+.action-card:nth-child(2) { animation-delay: 0.2s; }
+.action-card:nth-child(3) { animation-delay: 0.3s; }
+</style>

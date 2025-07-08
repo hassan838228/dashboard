@@ -1,0 +1,1165 @@
+<%- include("partials/head", {bot, user, path, description, title: "Premium - Cbot" , url, image }) %>
+<%- include("partials/nav", {bot, user, path, title: "Premium" }) %>
+
+<div class="premium-container">
+    <!-- Hero Section -->
+    <div class="premium-hero">
+        <div class="hero-content">
+            <div class="premium-crown">
+                <i class="fas fa-crown"></i>
+                <div class="crown-sparkle sparkle-1">✨</div>
+                <div class="crown-sparkle sparkle-2">✨</div>
+                <div class="crown-sparkle sparkle-3">✨</div>
+            </div>
+            
+            <h1 class="hero-title">Cbot Premium</h1>
+            <p class="hero-description">
+                Unlock the full potential of your Discord server with advanced features, 
+                higher limits, and priority support.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">5x</span>
+                    <span class="stat-label">Higher Limits</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Priority Support</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Exclusive Features</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="pricing-section">
+        <div class="section-header">
+            <h2>Choose Your Plan</h2>
+            <p>Select the perfect plan for your server's needs</p>
+            
+            <!-- Billing Toggle -->
+            <div class="billing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <div class="toggle-switch" id="billingToggle">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label">Yearly</span>
+                <span class="savings-badge">Save 20%</span>
+            </div>
+        </div>
+
+        <div class="pricing-cards">
+            <!-- Basic Plan -->
+            <div class="pricing-card basic-plan">
+                <div class="plan-header">
+                    <h3 class="plan-name">Basic</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly">4.99</span>
+                        <span class="amount yearly" style="display: none;">3.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">Perfect for small communities</p>
+                </div>
+                
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Advanced Logging</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Custom Welcome Messages</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Reaction Roles</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>5 Custom Commands</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Basic Automod</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Priority Support</span>
+                    </div>
+                </div>
+                
+                <button class="plan-button">
+                    <i class="fas fa-credit-card"></i>
+                    Choose Basic
+                </button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card pro-plan popular">
+                <div class="popular-badge">
+                    <i class="fas fa-star"></i>
+                    Most Popular
+                </div>
+                
+                <div class="plan-header">
+                    <h3 class="plan-name">Pro</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly">9.99</span>
+                        <span class="amount yearly" style="display: none;">7.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">Best for growing servers</p>
+                </div>
+                
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Everything in Basic</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Advanced Automod</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Custom Embed Designer</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>20 Custom Commands</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Server Analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Advanced Ticket System</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Custom Bot Status</span>
+                    </div>
+                </div>
+                
+                <button class="plan-button">
+                    <i class="fas fa-crown"></i>
+                    Choose Pro
+                </button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card enterprise-plan">
+                <div class="plan-header">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly">19.99</span>
+                        <span class="amount yearly" style="display: none;">15.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="plan-description">For large communities</p>
+                </div>
+                
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Everything in Pro</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Unlimited Custom Commands</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Advanced AI Moderation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Custom Branding</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Dedicated Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>API Access</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check"></i>
+                        <span>Custom Integrations</span>
+                    </div>
+                </div>
+                
+                <button class="plan-button">
+                    <i class="fas fa-diamond"></i>
+                    Choose Enterprise
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Showcase -->
+    <div class="features-showcase">
+        <div class="section-header">
+            <h2>Premium Features</h2>
+            <p>Discover what makes Cbot Premium special</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-showcase">
+                <div class="feature-image">
+                    <img src="<%= domain %>/premium-features/advanced-logging.png" alt="Advanced Logging">
+                    <div class="feature-overlay">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <h3>Advanced Logging</h3>
+                    <p>Comprehensive logging system with custom filters, export options, and real-time monitoring of all server activities.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Moderation</span>
+                        <span class="tag">Security</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-showcase reverse">
+                <div class="feature-content">
+                    <h3>Custom Embed Designer</h3>
+                    <p>Create stunning embeds with our visual editor. Add images, buttons, fields, and customize colors to match your server's theme.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Design</span>
+                        <span class="tag">Customization</span>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="<%= domain %>/premium-features/embed-designer.png" alt="Embed Designer">
+                    <div class="feature-overlay">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-showcase">
+                <div class="feature-image">
+                    <img src="<%= domain %>/premium-features/analytics.png" alt="Server Analytics">
+                    <div class="feature-overlay">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <h3>Server Analytics</h3>
+                    <p>Get detailed insights into your server's growth, member activity, command usage, and engagement metrics.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Insights</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits-section">
+        <div class="section-header">
+            <h2>Why Choose Premium?</h2>
+            <p>Unlock powerful features that transform your server</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Enhanced Performance</h3>
+                <p>Faster response times and priority processing for all commands and features.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Advanced Security</h3>
+                <p>AI-powered moderation and advanced anti-spam protection to keep your server safe.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Priority Support</h3>
+                <p>Get help when you need it with our dedicated premium support team.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Custom Solutions</h3>
+                <p>Tailored features and integrations designed specifically for your server's needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about Cbot Premium</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I cancel my subscription anytime?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can cancel your premium subscription at any time. Your premium features will remain active until the end of your current billing period.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you offer refunds?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 14-day money-back guarantee for all premium plans. If you're not satisfied, contact our support team for a full refund.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I upgrade or downgrade my plan?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there a free trial available?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 7-day free trial for all premium plans. No credit card required to start your trial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Upgrade Your Server?</h2>
+            <p>Join thousands of servers already using Cbot Premium to create amazing community experiences.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-premium large">
+                    <i class="fas fa-crown"></i>
+                    Start Free Trial
+                </button>
+                <a href="/contact" class="btn btn-outline large">
+                    <i class="fas fa-comments"></i>
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Premium Page Styles */
+.premium-container {
+    min-height: calc(100vh - 70px);
+    background: var(--background-primary);
+}
+
+/* Hero Section */
+.premium-hero {
+    padding: 80px 24px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(250, 166, 26, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(88, 101, 242, 0.1) 0%, transparent 50%),
+        var(--background-primary);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.premium-crown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #faa61a 0%, #ff8c00 100%);
+    border-radius: 50%;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 32px rgba(250, 166, 26, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+.premium-crown i {
+    font-size: 3rem;
+    color: white;
+}
+
+.crown-sparkle {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle-1 {
+    top: 10px;
+    right: 10px;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    bottom: 15px;
+    left: 5px;
+    animation-delay: 0.7s;
+}
+
+.sparkle-3 {
+    top: 30px;
+    left: -10px;
+    animation-delay: 1.4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #faa61a 0%, #ff8c00 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--warning-color);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Pricing Section */
+.pricing-section {
+    padding: 80px 24px;
+    background: var(--background-secondary);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+/* Billing Toggle */
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.toggle-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.toggle-label.active {
+    color: var(--text-primary);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--background-tertiary);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.toggle-switch.active {
+    background: var(--gradient-primary);
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch.active .toggle-slider {
+    transform: translateX(30px);
+}
+
+.savings-badge {
+    background: linear-gradient(135deg, #3ba55d 0%, #2d8a47 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Pricing Cards */
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--gradient-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 32px 24px;
+    position: relative;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.pricing-card.popular {
+    border-color: var(--warning-color);
+    transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #faa61a 0%, #ff8c00 100%);
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.plan-header {
+    margin-bottom: 32px;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.currency {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.plan-description {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.plan-features {
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 0.95rem;
+}
+
+.feature-item i {
+    color: var(--success-color);
+    font-size: 1rem;
+    width: 16px;
+    flex-shrink: 0;
+}
+
+.plan-button {
+    width: 100%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.plan-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pro-plan .plan-button {
+    background: linear-gradient(135deg, #faa61a 0%, #ff8c00 100%);
+}
+
+.enterprise-plan .plan-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+/* Features Showcase */
+.features-showcase {
+    padding: 80px 24px;
+}
+
+.features-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.feature-showcase.reverse {
+    direction: rtl;
+}
+
+.feature-showcase.reverse > * {
+    direction: ltr;
+}
+
+.feature-image {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.feature-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: rgba(88, 101, 242, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.feature-content h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.feature-content p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.feature-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 80px 24px;
+    background: var(--background-secondary);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(88, 101, 242, 0.3);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.benefit-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 80px 24px;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(88, 101, 242, 0.3);
+}
+
+.faq-question {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.faq-question h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.faq-question i {
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 24px 24px;
+    max-height: 200px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 24px;
+    background: 
+        linear-gradient(135deg, rgba(250, 166, 26, 0.1) 0%, rgba(88, 101, 242, 0.1) 100%),
+        var(--background-secondary);
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn.large {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+}
+
+.btn-premium {
+    background: linear-gradient(135deg, #faa61a 0%, #ff8c00 100%);
+    color: white;
+    border: none;
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(250, 166, 26, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+    background: var(--background-tertiary);
+    border-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        gap: 24px;
+    }
+    
+    .pricing-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-card.popular {
+        transform: none;
+    }
+    
+    .pricing-card.popular:hover {
+        transform: translateY(-8px);
+    }
+    
+    .feature-showcase {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .premium-hero {
+        padding: 60px 16px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .pricing-section,
+    .features-showcase,
+    .benefits-section,
+    .faq-section,
+    .cta-section {
+        padding: 60px 16px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pricing-card,
+.feature-showcase,
+.benefit-card,
+.faq-item {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.pricing-card:nth-child(1) { animation-delay: 0.1s; }
+.pricing-card:nth-child(2) { animation-delay: 0.2s; }
+.pricing-card:nth-child(3) { animation-delay: 0.3s; }
+
+.benefit-card:nth-child(1) { animation-delay: 0.1s; }
+.benefit-card:nth-child(2) { animation-delay: 0.2s; }
+.benefit-card:nth-child(3) { animation-delay: 0.3s; }
+.benefit-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
+
+<script>
+// Billing toggle functionality
+document.getElementById('billingToggle').addEventListener('click', function() {
+    this.classList.toggle('active');
+    
+    const monthlyAmounts = document.querySelectorAll('.amount.monthly');
+    const yearlyAmounts = document.querySelectorAll('.amount.yearly');
+    const toggleLabels = document.querySelectorAll('.toggle-label');
+    
+    if (this.classList.contains('active')) {
+        // Show yearly prices
+        monthlyAmounts.forEach(el => el.style.display = 'none');
+        yearlyAmounts.forEach(el => el.style.display = 'inline');
+        toggleLabels[0].classList.remove('active');
+        toggleLabels[1].classList.add('active');
+    } else {
+        // Show monthly prices
+        monthlyAmounts.forEach(el => el.style.display = 'inline');
+        yearlyAmounts.forEach(el => el.style.display = 'none');
+        toggleLabels[0].classList.add('active');
+        toggleLabels[1].classList.remove('active');
+    }
+});
+
+// FAQ functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    });
+});
+
+// Plan button functionality
+document.querySelectorAll('.plan-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+        const isYearly = document.getElementById('billingToggle').classList.contains('active');
+        
+        // Here you would integrate with your payment processor
+        console.log(`Selected plan: ${planName}, Yearly: ${isYearly}`);
+        
+        // For now, just show an alert
+        alert(`You selected the ${planName} plan! Payment integration would go here.`);
+    });
+});
+
+// Initialize toggle labels
+document.querySelectorAll('.toggle-label')[0].classList.add('active');
+</script>

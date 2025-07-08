@@ -1,0 +1,867 @@
+<%- include("partials/head", {bot, user, path, description, title: "Cbot - Home" , url, image }) %>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+
+<!-- Language Toggle -->
+<div class="language-toggle">
+    <div class="lang-selector">
+        <i class="fas fa-globe"></i>
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
+    </div>
+</div>
+
+<div class="page-content">
+    <input style="display: none" type="text" value="<%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %>" id="size">
+    <input style="display: none" type="text" value="<%= bot.guilds.cache.size %>" id="size2">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="brand-logo">
+                    <img src="<%= domain %>/logo.png" alt="Cbot Logo">
+                    <h1 class="brand-name">CBOT</h1>
+                </div>
+                <h2 class="hero-title">The Ultimate Discord Bot Experience</h2>
+                <p class="hero-description">
+                    Transform your Discord server with powerful moderation, entertainment, and utility features.
+                </p>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number" id="odometer"><%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %></span>
+                        <span class="stat-label">Users</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="odometer2"><%= bot.guilds.cache.size %></span>
+                        <span class="stat-label">Servers</span>
+                    </div>
+                </div>
+                
+                <% if (user) { %>
+                    <div class="auth-buttons">
+                        <a class="btn btn-primary" href="/invite">
+                            <i class="fab fa-discord"></i>
+                            Add to Discord
+                        </a>
+                        <a class="btn btn-secondary" href="/dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                        </a>
+                    </div>
+                <% } else { %>
+                    <div class="auth-buttons">
+                        <a class="btn btn-primary" href="/invite">
+                            <i class="fab fa-discord"></i>
+                            Add to Discord
+                        </a>
+                        <a class="btn btn-secondary" href="/login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login with Discord
+                        </a>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Advanced Security</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-music"></i>
+                    <span>Music & Entertainment</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-cogs"></i>
+                    <span>Custom Commands</span>
+                </div>
+                <div class="hero-bot-avatar">
+                    <img src="<%= domain %>/logo.png" alt="Bot Avatar">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to manage and enhance your Discord server</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="<%= domain %>/cards/logging.png" alt="Logging">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Advanced Logging</h3>
+                        <p>Comprehensive logging system to track all server activities. Monitor member actions, command usage, and voice channel activities with detailed logs.</p>
+                        <div class="feature-tags">
+                            <span class="tag">Moderation</span>
+                            <span class="tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="<%= domain %>/cards/embeds.png" alt="Embeds">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Embed Designer</h3>
+                        <p>Create beautiful, interactive embeds with our intuitive designer. Send announcements, create custom commands, and enhance your server's appearance.</p>
+                        <div class="feature-tags">
+                            <span class="tag">Design</span>
+                            <span class="tag">Customization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="<%= domain %>/cards/application.png" alt="Applications">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Server Applications</h3>
+                        <p>Streamline your recruitment process with custom application forms. Manage staff applications efficiently with automated workflows.</p>
+                        <div class="feature-tags">
+                            <span class="tag">Management</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="<%= domain %>/cards/rr.png" alt="Reaction Roles">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Reaction Roles</h3>
+                        <p>Let members self-assign roles by reacting to messages. Create interactive role menus and automate role management processes.</p>
+                        <div class="feature-tags">
+                            <span class="tag">Roles</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to enhance your Discord server?</h2>
+                <p>Join thousands of servers already using Cbot to create amazing community experiences.</p>
+                <div class="cta-buttons">
+                    <a class="btn btn-primary large" href="/invite">
+                        <i class="fab fa-discord"></i>
+                        Get Started Now
+                    </a>
+                    <a class="btn btn-outline large" href="/premium">
+                        <i class="fas fa-crown"></i>
+                        View Premium
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Back to top button -->
+<a href="#" id="backToTop" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<style>
+/* Modern Design System */
+:root {
+    --primary-color: #5865f2;
+    --primary-hover: #4752c4;
+    --secondary-color: #4f545c;
+    --accent-color: #00d4aa;
+    --success-color: #3ba55d;
+    --warning-color: #faa61a;
+    --error-color: #ed4245;
+    
+    --background-primary: #0a0e1a;
+    --background-secondary: #101628;
+    --background-tertiary: #1a1f35;
+    --background-card: #1e2439;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --text-muted: #72767d;
+    
+    --border-color: #2c3244;
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
+    
+    --gradient-primary: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    --gradient-accent: linear-gradient(135deg, #00d4aa 0%, #00b4d8 100%);
+    --gradient-card: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.page-content {
+    min-height: 100vh;
+}
+
+/* Language Toggle */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 8px 12px;
+    backdrop-filter: blur(10px);
+}
+
+.lang-selector i {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.lang-selector select {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+.lang-selector select option {
+    background: var(--background-card);
+    color: var(--text-primary);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(88, 101, 242, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+        var(--background-primary);
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.brand-logo img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.stats-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding: 20px 24px;
+    background: var(--gradient-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-color);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: var(--background-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--background-tertiary);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+    background: var(--background-card);
+    border-color: var(--primary-color);
+}
+
+.btn.large {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+}
+
+/* Hero Visual */
+.hero-visual {
+    position: relative;
+    height: 500px;
+}
+
+.floating-card {
+    position: absolute;
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-md);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-card i {
+    color: var(--accent-color);
+    font-size: 1.25rem;
+}
+
+.floating-card span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.card-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.card-2 {
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.card-3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.hero-bot-avatar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.hero-bot-avatar img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: var(--shadow-xl); }
+    50% { box-shadow: 0 16px 64px rgba(88, 101, 242, 0.4); }
+}
+
+/* Features Section */
+.features-section {
+    padding: 120px 0;
+    background: var(--background-secondary);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.feature-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 32px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover:before {
+    opacity: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--border-radius);
+    background: var(--background-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.feature-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.feature-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.feature-content p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.feature-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 120px 0;
+    background: 
+        linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%),
+        var(--background-primary);
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Back to top */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--gradient-primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .auth-buttons,
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .stat-divider {
+        width: 80px;
+        height: 1px;
+    }
+    
+    .language-toggle {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .brand-name {
+        font-size: 2rem;
+    }
+    
+    .feature-card {
+        padding: 24px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content,
+.feature-card {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
+
+<script>
+// Language switching functionality
+document.getElementById('languageSelect').addEventListener('change', function() {
+    const selectedLang = this.value;
+    // Here you can implement the language switching logic
+    // For now, just storing the preference
+    localStorage.setItem('preferredLanguage', selectedLang);
+    
+    // You can add translation logic here
+    if (selectedLang === 'ar') {
+        document.body.dir = 'rtl';
+        // Add Arabic translations
+    } else {
+        document.body.dir = 'ltr';
+        // Add English translations
+    }
+});
+
+// Load saved language preference
+window.addEventListener('load', function() {
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        document.getElementById('languageSelect').value = savedLang;
+        if (savedLang === 'ar') {
+            document.body.dir = 'rtl';
+        }
+    }
+});
+
+// Back to top functionality
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+document.getElementById('backToTop').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Odometer animation
+function animateCounter(element, start, end, duration) {
+    let current = start;
+    const increment = (end - start) / (duration / 16);
+    
+    function updateCounter() {
+        current += increment;
+        if (current < end) {
+            element.textContent = Math.floor(current).toLocaleString();
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = end.toLocaleString();
+        }
+    }
+    
+    updateCounter();
+}
+
+// Initialize counters when page loads
+window.addEventListener('load', function() {
+    const memberCount = parseInt(document.getElementById('size').value);
+    const serverCount = parseInt(document.getElementById('size2').value);
+    
+    setTimeout(() => {
+        animateCounter(document.getElementById('odometer'), 0, memberCount, 2000);
+        animateCounter(document.getElementById('odometer2'), 0, serverCount, 2000);
+    }, 500);
+});
+</script>
