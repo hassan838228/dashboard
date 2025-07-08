@@ -1,731 +1,495 @@
 <%- include("partials/head", {bot, user, path, description, title: "Cbot - Home" , url, image }) %>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous">
+<link rel="stylesheet" href="<%= domain %>/css/new-home.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous">
+
 <div class="page-content">
 <input style="display: none" type="text" value="<%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %>" id="size">
-         <input style="display: none" type="text" value="<%= bot.guilds.cache.size %>" id="size2">
+<input style="display: none" type="text" value="<%= bot.guilds.cache.size %>" id="size2">
+
+<body>
+
+<!-- User Profile Section (Only show if logged in) -->
 <% if (user) { %>
-
-
-<body>
-
- <div class="full-height">
-    <div class="section-title-wrap">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center parallax-fade-top">
-            <p>CBOT</p>
-            <h1>The best Multipurpose <br>Discord Bot</h1>
-              <p style="font-size: 13px">Serving <b  id="odometer" class="odometer"><%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %></b> members in <b  id="odometer2" class="odometer"><%= bot.guilds.cache.size %> guilds</b> servers.</p>
-          <div class='buttons flex'>
-                    <a class='button btn btn-blurple' href='/invite'><span><i class="fab fa-discord fa-2x"></i> Add
-                            to Discord</span></a>
-                    <a class='button btn btn-default' href='/dashboard'><span><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</span></a>
-                </div>
-          </div>
+<% if (user.avatar) { avatar = "https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png?size=128"; } else { avatar = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404.png?v=1602412158188"; } %>
+<div class="user-profile">
+    <img src="<%= avatar %>" alt="User Avatar" class="user-avatar">
+    <span class="user-name"><%= user.username %>#<%= user.discriminator %></span>
+    
+    <div class="language-selector">
+        <button class="language-btn" onclick="toggleLanguage()">
+            <i class="fas fa-globe"></i> العربية
+        </button>
+        <div class="language-dropdown" id="languageDropdown">
+            <a href="#" onclick="changeLanguage('ar')">🇸🇦 العربية</a>
+            <a href="#" onclick="changeLanguage('en')">🇺🇸 English</a>
+            <a href="#" onclick="changeLanguage('fr')">🇫🇷 Français</a>
+            <a href="#" onclick="changeLanguage('de')">🇩🇪 Deutsch</a>
         </div>
-      </div>
     </div>
-  </div>
-
-
-
-
-<div class="content-container">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
- 	<div id="os2" class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/logging.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Advanced Logging</h2>
-  					<p>With Cbot you can fully customize logging. Cbot lets you set your own log settings from member logging to command and voice logging!</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/embeds.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Design Embeds</h2>
-  						<p>Cbot Allows you to make, and send embeds to any channel. You can even send it as your own webhook or save it as a Custom Command!</p>
-  				</div>
-  			</div>
-
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/application.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Create Applications</h2>
-  					<p>Manage your server applications with Cbot!</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/rr.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Reaction Roles</h2>
-  					<p>Create your own reaction roles directly from Cbot's Dashboard!</p>
-  				</div>
-  			</div>
-        <div style="padding-top: 100px"></div>
-  </div>
-
-
-</section>
-
-
-</body>
-
-
-<% } else { %>
-
-
-
-<body>
-
-<section>
-
-  <div class="full-height" >
-    <div class="section-title-wrap">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center parallax-fade-top">
-            <p>Cbot</p>
-            <h1>The best Multipurpose <br>Discord Bot</h1>
-             <p style="font-size: 13px">Serving <b  id="odometer" class="odometer"><%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %></b> members in <b  id="odometer2" class="odometer"><%= bot.guilds.cache.size %></b> servers.</p>
-      <div class='buttons flex'>
-                    <a class='button btn btn-blurple' href='/invite'><span><i class="fab fa-discord fa-2x"></i> Add
-                            to Discord</span></a>
-                    <a class='button btn btn-default' href='/dashboard'><span><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</span></a>
-                </div>
-          </div>
-        </div>
-      </div>
+    
+    <div style="margin-left: 15px;">
+        <a href="<%=domain%>/dashboard" style="color: var(--gold-primary); text-decoration: none;">
+            <i class="fas fa-server"></i>
+        </a>
     </div>
-  </div>
-</section>
-
-<section>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-<div class="content-container">
-  			<div id="os2" class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/logging.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Advanced Logging</h2>
-  					<p>With Cbot you can fully customize logging. Cbot lets you set your own log settings from member logging to command and voice logging!</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/embeds.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Design Embeds</h2>
-  						<p>Cbot Allows you to make, and send embeds to any channel. You can even send it as your own webhook or save it as a Custom Command!</p>
-  				</div>
-  			</div>
-
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/application.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Create Applications</h2>
-  					<p>Manage your server applications with Cbot!</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%= domain %>/cards/rr.png"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Reaction Roles</h2>
-  					<p>Create your own reaction roles directly from Cbot's Dashboard!</p>
-  				</div>
-  			</div>
-        
-<div style="padding-top: 100px"></div>
-  </div>
-
-
-</section>
-
-
-
-</body>
-
-
-
-
-<% } %>
 </div>
-<style>
+<% } %>
 
-#myBtn {
-position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <img src="<%= domain %>/logo.png" alt="Cbot Logo" class="hero-logo">
+        
+        <h1 class="hero-title" data-lang-key="bot-name">CBOT</h1>
+        <h2 class="hero-subtitle" data-lang-key="hero-subtitle">أفضل بوت Discord متعدد الأغراض</h2>
+        <p class="hero-description" data-lang-key="hero-description">بوت قوي ومتطور لتحسين وإدارة خادم Discord الخاص بك</p>
+        
+        <!-- Stats -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number odometer" id="odometer"><%=  bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0) %></span>
+                <span class="stat-label" data-lang-key="members">عضو</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number odometer" id="odometer2"><%= bot.guilds.cache.size %></span>
+                <span class="stat-label" data-lang-key="servers">خادم</span>
+            </div>
+        </div>
+        
+        <!-- Main Action Buttons -->
+        <div class="main-buttons">
+            <% if (user) { %>
+            <a href="/dashboard" class="main-btn btn-primary">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                <span data-lang-key="dashboard">لوحة التحكم</span>
+            </a>
+            <% } else { %>
+            <a href="/login" class="main-btn btn-primary">
+                <i class="fab fa-discord"></i>
+                <span data-lang-key="login">تسجيل الدخول</span>
+            </a>
+            <% } %>
+            
+            <a href="/invite" class="main-btn btn-secondary">
+                <i class="fab fa-discord fa-2x"></i>
+                <span data-lang-key="add-to-discord">إضافة إلى Discord</span>
+            </a>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="/premium" class="nav-btn">
+                <i class="fas fa-crown"></i>
+                <span data-lang-key="premium">البريميوم</span>
+            </a>
+            <a href="/stats" class="nav-btn">
+                <i class="fas fa-chart-bar"></i>
+                <span data-lang-key="bot-status">حالة البوت</span>
+            </a>
+            <a href="/commands" class="nav-btn">
+                <i class="fas fa-terminal"></i>
+                <span data-lang-key="commands">الأوامر</span>
+            </a>
+            <a href="/support" class="nav-btn">
+                <i class="fas fa-headset"></i>
+                <span data-lang-key="support">الدعم</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
 
-#myBtn i {
-color: #fff;
-    margin: 0;
-    position: relative;
-    left: 16px;
-    top: 13px;
-    font-size: 19px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
+<!-- Features Section -->
+<section class="features-section">
+    <div class="features-container">
+        <h2 class="features-title" data-lang-key="features-title">الميزات الرئيسية</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card animate-fade-in">
+                <img src="<%= domain %>/cards/logging.png" alt="Advanced Logging" class="feature-image">
+                <h3 class="feature-title" data-lang-key="logging-title">تسجيل متقدم</h3>
+                <p class="feature-description" data-lang-key="logging-desc">مع Cbot يمكنك تخصيص التسجيل بالكامل. يتيح لك Cbot تعيين إعدادات السجل الخاصة بك من تسجيل الأعضاء إلى تسجيل الأوامر والصوت!</p>
+            </div>
+            
+            <div class="feature-card animate-fade-in">
+                <img src="<%= domain %>/cards/embeds.png" alt="Design Embeds" class="feature-image">
+                <h3 class="feature-title" data-lang-key="embeds-title">تصميم الرسائل المدمجة</h3>
+                <p class="feature-description" data-lang-key="embeds-desc">يتيح لك Cbot إنشاء وإرسال الرسائل المدمجة إلى أي قناة. يمكنك حتى إرسالها كـ webhook خاص بك أو حفظها كأمر مخصص!</p>
+            </div>
+            
+            <div class="feature-card animate-fade-in">
+                <img src="<%= domain %>/cards/application.png" alt="Create Applications" class="feature-image">
+                <h3 class="feature-title" data-lang-key="applications-title">إنشاء التطبيقات</h3>
+                <p class="feature-description" data-lang-key="applications-desc">إدارة تطبيقات الخادم الخاص بك مع Cbot!</p>
+            </div>
+            
+            <div class="feature-card animate-fade-in">
+                <img src="<%= domain %>/cards/rr.png" alt="Reaction Roles" class="feature-image">
+                <h3 class="feature-title" data-lang-key="reaction-roles-title">أدوار التفاعل</h3>
+                <p class="feature-description" data-lang-key="reaction-roles-desc">إنشاء أدوار التفاعل الخاصة بك مباشرة من لوحة تحكم Cbot!</p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- Custom Footer -->
+<footer class="custom-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <img src="<%= domain %>/logo.png" alt="Cbot Logo" class="footer-logo">
+            <h3 data-lang-key="bot-name">Cbot</h3>
+            <p data-lang-key="footer-desc">Cbot هو بوت Discord متعدد الأغراض جاهز لتطوير وتعزيز خادم Discord الخاص بك!</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3 data-lang-key="useful-links">روابط مفيدة</h3>
+            <ul>
+                <li><a href="/policy" data-lang-key="policy">السياسة</a></li>
+                <li><a href="/faq" data-lang-key="faq">الأسئلة الشائعة</a></li>
+                <li><a href="/premium" data-lang-key="premium">البريميوم</a></li>
+                <li><a href="/embeds" data-lang-key="embeds">الرسائل المدمجة</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 data-lang-key="support-help">الدعم والمساعدة</h3>
+            <ul>
+                <li><a href="/support" data-lang-key="support">الدعم</a></li>
+                <li><a href="/team" data-lang-key="team">الفريق</a></li>
+                <li><a href="/stats" data-lang-key="bot-status">حالة البوت</a></li>
+                <li><a href="/commands" data-lang-key="commands">الأوامر</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 data-lang-key="legal">قانوني</h3>
+            <ul>
+                <li><a href="/policy" data-lang-key="terms">الشروط</a></li>
+                <li><a href="/policy" data-lang-key="privacy">الخصوصية</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Cbot, جميع الحقوق محفوظة</p>
+    </div>
+</footer>
 
-#myBtn:hover {
-background: rgba(0, 0, 0, 0.9);
-}
-.btn {
-	border: none;
-	margin: 10px;
-	color: #ffffff;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 10px 30px;
-	border-radius: 5px;
-	display: inline-block;
-	background-color: var(--secondary-color);
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-	transition: all 0.5s;
-}
+</body>
 
-.btn {
-	border: none;
-	margin: 10px;
-	color: #ffffff;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 10px 30px;
-	border-radius: 5px;
-	display: inline-block;
-	background-color: var(--secondary-color);
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-	transition: all 0.5s;
-}
+<!-- JavaScript for Language Switching and Animations -->
+<script>
+// Language Data
+const translations = {
+    ar: {
+        'bot-name': 'CBOT',
+        'hero-subtitle': 'أفضل بوت Discord متعدد الأغراض',
+        'hero-description': 'بوت قوي ومتطور لتحسين وإدارة خادم Discord الخاص بك',
+        'members': 'عضو',
+        'servers': 'خادم',
+        'dashboard': 'لوحة التحكم',
+        'login': 'تسجيل الدخول',
+        'add-to-discord': 'إضافة إلى Discord',
+        'premium': 'البريميوم',
+        'bot-status': 'حالة البوت',
+        'commands': 'الأوامر',
+        'support': 'الدعم',
+        'features-title': 'الميزات الرئيسية',
+        'logging-title': 'تسجيل متقدم',
+        'logging-desc': 'مع Cbot يمكنك تخصيص التسجيل بالكامل. يتيح لك Cbot تعيين إعدادات السجل الخاصة بك من تسجيل الأعضاء إلى تسجيل الأوامر والصوت!',
+        'embeds-title': 'تصميم الرسائل المدمجة',
+        'embeds-desc': 'يتيح لك Cbot إنشاء وإرسال الرسائل المدمجة إلى أي قناة. يمكنك حتى إرسالها كـ webhook خاص بك أو حفظها كأمر مخصص!',
+        'applications-title': 'إنشاء التطبيقات',
+        'applications-desc': 'إدارة تطبيقات الخادم الخاص بك مع Cbot!',
+        'reaction-roles-title': 'أدوار التفاعل',
+        'reaction-roles-desc': 'إنشاء أدوار التفاعل الخاصة بك مباشرة من لوحة تحكم Cbot!',
+        'useful-links': 'روابط مفيدة',
+        'policy': 'السياسة',
+        'faq': 'الأسئلة الشائعة',
+        'embeds': 'الرسائل المدمجة',
+        'support-help': 'الدعم والمساعدة',
+        'team': 'الفريق',
+        'legal': 'قانوني',
+        'terms': 'الشروط',
+        'privacy': 'الخصوصية',
+        'footer-desc': 'Cbot هو بوت Discord متعدد الأغراض جاهز لتطوير وتعزيز خادم Discord الخاص بك!'
+    },
+    en: {
+        'bot-name': 'CBOT',
+        'hero-subtitle': 'The best Multipurpose Discord Bot',
+        'hero-description': 'Powerful and advanced bot to enhance and manage your Discord server',
+        'members': 'Members',
+        'servers': 'Servers',
+        'dashboard': 'Dashboard',
+        'login': 'Login',
+        'add-to-discord': 'Add to Discord',
+        'premium': 'Premium',
+        'bot-status': 'Bot Status',
+        'commands': 'Commands',
+        'support': 'Support',
+        'features-title': 'Main Features',
+        'logging-title': 'Advanced Logging',
+        'logging-desc': 'With Cbot you can fully customize logging. Cbot lets you set your own log settings from member logging to command and voice logging!',
+        'embeds-title': 'Design Embeds',
+        'embeds-desc': 'Cbot Allows you to make, and send embeds to any channel. You can even send it as your own webhook or save it as a Custom Command!',
+        'applications-title': 'Create Applications',
+        'applications-desc': 'Manage your server applications with Cbot!',
+        'reaction-roles-title': 'Reaction Roles',
+        'reaction-roles-desc': 'Create your own reaction roles directly from Cbot\'s Dashboard!',
+        'useful-links': 'Useful Links',
+        'policy': 'Policy',
+        'faq': 'FAQ',
+        'embeds': 'Embeds',
+        'support-help': 'Support & Help',
+        'team': 'Team',
+        'legal': 'Legal',
+        'terms': 'Terms',
+        'privacy': 'Privacy',
+        'footer-desc': 'Cbot is a multi-purpose discord bot ready to skill up and boost up your Discord server!'
+    },
+    fr: {
+        'bot-name': 'CBOT',
+        'hero-subtitle': 'Le meilleur Bot Discord polyvalent',
+        'hero-description': 'Bot puissant et avancé pour améliorer et gérer votre serveur Discord',
+        'members': 'Membres',
+        'servers': 'Serveurs',
+        'dashboard': 'Tableau de bord',
+        'login': 'Connexion',
+        'add-to-discord': 'Ajouter à Discord',
+        'premium': 'Premium',
+        'bot-status': 'Statut du Bot',
+        'commands': 'Commandes',
+        'support': 'Support',
+        'features-title': 'Fonctionnalités principales',
+        'logging-title': 'Journalisation avancée',
+        'logging-desc': 'Avec Cbot, vous pouvez entièrement personnaliser la journalisation. Cbot vous permet de définir vos propres paramètres de journal!',
+        'embeds-title': 'Conception d\'intégrations',
+        'embeds-desc': 'Cbot vous permet de créer et d\'envoyer des intégrations à n\'importe quel canal!',
+        'applications-title': 'Créer des applications',
+        'applications-desc': 'Gérez vos applications de serveur avec Cbot!',
+        'reaction-roles-title': 'Rôles de réaction',
+        'reaction-roles-desc': 'Créez vos propres rôles de réaction directement depuis le tableau de bord de Cbot!',
+        'useful-links': 'Liens utiles',
+        'policy': 'Politique',
+        'faq': 'FAQ',
+        'embeds': 'Intégrations',
+        'support-help': 'Support et aide',
+        'team': 'Équipe',
+        'legal': 'Légal',
+        'terms': 'Conditions',
+        'privacy': 'Confidentialité',
+        'footer-desc': 'Cbot est un bot discord polyvalent prêt à améliorer votre serveur Discord!'
+    },
+    de: {
+        'bot-name': 'CBOT',
+        'hero-subtitle': 'Der beste Mehrzweck-Discord-Bot',
+        'hero-description': 'Leistungsstarker und fortschrittlicher Bot zur Verbesserung und Verwaltung Ihres Discord-Servers',
+        'members': 'Mitglieder',
+        'servers': 'Server',
+        'dashboard': 'Dashboard',
+        'login': 'Anmelden',
+        'add-to-discord': 'Zu Discord hinzufügen',
+        'premium': 'Premium',
+        'bot-status': 'Bot-Status',
+        'commands': 'Befehle',
+        'support': 'Support',
+        'features-title': 'Hauptfunktionen',
+        'logging-title': 'Erweiterte Protokollierung',
+        'logging-desc': 'Mit Cbot können Sie die Protokollierung vollständig anpassen. Cbot ermöglicht es Ihnen, Ihre eigenen Protokolleinstellungen festzulegen!',
+        'embeds-title': 'Einbettungen gestalten',
+        'embeds-desc': 'Cbot ermöglicht es Ihnen, Einbettungen zu erstellen und an jeden Kanal zu senden!',
+        'applications-title': 'Anwendungen erstellen',
+        'applications-desc': 'Verwalten Sie Ihre Server-Anwendungen mit Cbot!',
+        'reaction-roles-title': 'Reaktionsrollen',
+        'reaction-roles-desc': 'Erstellen Sie Ihre eigenen Reaktionsrollen direkt über das Cbot-Dashboard!',
+        'useful-links': 'Nützliche Links',
+        'policy': 'Richtlinie',
+        'faq': 'FAQ',
+        'embeds': 'Einbettungen',
+        'support-help': 'Support & Hilfe',
+        'team': 'Team',
+        'legal': 'Rechtliches',
+        'terms': 'Bedingungen',
+        'privacy': 'Datenschutz',
+        'footer-desc': 'Cbot ist ein Mehrzweck-Discord-Bot, der bereit ist, Ihren Discord-Server zu verbessern!'
+    }
+};
 
-.btn-blurple {
-	background-color: #7289da;
-}
-.btn-default {
-	background-color: #2f2f2f;
-}
+let currentLanguage = 'ar';
 
-.btn i {
-	top: 3px;
-	font-size: 125%;
-	margin: 0 4px 0 0;
-	position: relative;
-}
-#myBtn:hover i {
-    color: #fff;
-    top: 5px;
-}
-
-/* #images
-================================================== */
-
-
- img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  border-radius: 0.6em;
-}
-@keyframes hover {
-  0%   {top: 0px;}
-  50%  {top: 50px;}
-  100% {top: 0px;}
-}
-.content-container {
-  width: 100%;
-  max-width: 1150px;
-  padding: 0 20px;
-  margin: 0 auto;
-}
- .product-row {
-  padding: 120px 0 0;
-  height: 60vh;
-  -webkit-box-align: center;
-          align-items: center;
-}
- .product-row .product-image {
-  width: 70%;
-  margin: 0 auto;
-  animation: goUpandDown 5s ease-in-out infinite; 
-}
-/* .product-row .product-image:hover {
-	transform: scale(1.1);
-} */
-
-@keyframes goUpandDown {
-  0% {
-    -webkit-transform: translatey(+60px);
-            transform: translatey(+60px);
-  }
-  50% {
-    -webkit-transform: translatey(+80px);
-            transform: translatey(+80px);
-  }
-  100% {
-    -webkit-transform: translatey(+60px);
-            transform: translatey(+60px);
-  }
-}
-
-
-.product-row .product-text {
-
-  background: transparent;
-  width: 90%;
-  margin: 10px auto;
-  text-align: center;
-}
- .product-row .product-title {
-  font-size: 2em;
-  color: #ffffff;
-  font-weight: 700;
-}
- .product-row p {
-  line-height: 1.5;
-  font-size: 1.2em;
-}
-.product-row {
-  margin: 1em 0;
-}
-
-.product-row::after {
-  content: "";
-  display: block;
-  clear: both;
-  float: none;
-}
-.product-row:nth-child(odd) {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-          flex-direction: row-reverse;
-}
-@media only screen and (min-width: 800px) {
-
-.product-row:nth-child(odd) .product-image {
-    padding-left: 5%;
-    padding-right: 0;
-  }
-.product-row {
-    display: -webkit-box;
-    display: flex;
-    margin-bottom: 0;
-    min-height: 380px;
-    -webkit-box-align: center;
-            align-items: center;
-  }
-.product-row .product-image {
-    width: 55%;
-    float: left;
-    -webkit-box-flex: 1;
-            flex: 1 1 55%;
-    padding-right: 5%;
-    max-width: 55% !important;
-    min-width: 320px;
-  }
-.product-row .product-text {
-    position: relative;
-    width: 45%;
-    text-align: left;
-    float: right;
-    -webkit-box-flex: 1;
-            flex: 1 1 45%;
-    max-width: 45%;
-  }
- .product-row .product-text {
-    margin-right: 1em;
-  }
-}
-
-
-
-
-.odometer {
-font-size: 13px;
-}
-  .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
-  position: relative;
-  font-size: 13px;
-}
-.odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
-  position: relative;
-  font-size: 13px;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
-  visibility: hidden;
-  font-size: 13px;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
-  text-align: left;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  font-size: 13px;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon {
-  display: block;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner {
-  display: block;
-  -webkit-backface-visibility: hidden;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value {
-  display: block;
-  -webkit-transform: translateZ(0);
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value {
-  position: absolute;
-}
-.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner {
-  -webkit-transition: -webkit-transform 2s;
-  -moz-transition: -moz-transform 2s;
-  -ms-transition: -ms-transform 2s;
-  -o-transition: -o-transform 2s;
-  transition: transform 2s;
-}
-.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner {
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
-  -webkit-transition: -webkit-transform 2s;
-  -moz-transition: -moz-transform 2s;
-  -ms-transition: -ms-transform 2s;
-  -o-transition: -o-transform 2s;
-  transition: transform 2s;
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-}
-.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  font-family: &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quot;Helvetica Neue&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;quot;, sans-serif;
-  line-height: 1.1em;
-}
-.odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value {
-  text-align: center;
-}
-.fourth {
-  height: 45px;
-  width: 250px;
-  border: 2px solid #ffffff;
-  color: #fff;
-  background-image: linear-gradient(45deg, #ffffff 50%, transparent 50%);
-  background-position: 100%;
-  background-size: 400%;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
-}
-.fourth:hover {
-  background-position: 0;
-}
-.section {
-  position: relative;
-  width: 100%;
-  display: block;
-}
-.over-hide {
-  overflow: hidden;
-}
-.full-height {
-  height: 100vh;
-}
-.login-button {
-  position: relative;
-  display: inline-block;
-  float: right;
-  margin-top: 37px;
-  margin-right: 10px;
+function toggleLanguage() {
+    const dropdown = document.getElementById('languageDropdown');
+    dropdown.classList.toggle('show');
 }
 
-.shadow-title {
-  position: fixed;
-  top: 0;
-  margin-top: 30px;
-  left: 20px;
-  width: 100%;
-  height: 300%;
-  text-align: left;
-  font-family: "Muli", sans-serif;
-  -webkit-writing-mode: vertical-lr;
-  writing-mode: vertical-lr;
-  font-size: 18vw;
-  line-height: 1;
-  color: rgba(200, 200, 200, 0.1);
-  background: linear-gradient(
-    90deg,
-    rgba(200, 200, 200, 0),
-    rgba(200, 200, 200, 0.35)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 900;
-  z-index: -1;
-}
-@keyframes comeUp {
-    from {
-        opacity: 0;
-        bottom: -50px;
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    const dropdown = document.getElementById('languageDropdown');
+    dropdown.classList.remove('show');
+    
+    // Update language button
+    const langBtn = document.querySelector('.language-btn');
+    const flags = { ar: '🇸🇦 العربية', en: '🇺🇸 English', fr: '🇫🇷 Français', de: '🇩🇪 Deutsch' };
+    langBtn.innerHTML = `<i class="fas fa-globe"></i> ${flags[lang]}`;
+    
+    // Update all text elements
+    const elements = document.querySelectorAll('[data-lang-key]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-lang-key');
+        if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+    
+    // Update document direction for Arabic
+    if (lang === 'ar') {
+        document.dir = 'rtl';
+    } else {
+        document.dir = 'ltr';
     }
 }
-.section-parallax {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  z-index: -2;
-}
-button:focus { outline: none; }
-.section.z-bigger {
-  z-index: 100;
-}
-.button span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
 
-.button span:after {
-	font-size: 25px;
-	content: '\00bb';
-	position: absolute;
-	opacity: 0;
-	top: -3px;
-	right: -20px;
-	transition: 0.5s;
-}
-
-.button:hover span {
-	padding-right: 25px;
-}
-
-.button:hover span:after {
-	opacity: 1;
-	right: 0;
-}
-.section.z-bigger-2 {
-  z-index: 200;
-}
-.section-title-wrap {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-  z-index: 3;
-}
-.section-title-wrap p {
-  letter-spacing: 2px;
-  font-size: 1.7em;
-  font-weight: 700;
-  padding: 0;
-  color: #ffffff;
-}
-.section-title-wrap h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 3.5vw;
-  letter-spacing: 8px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.padding-top-bottom {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-.background-dark {
-  background-color: #ffffff;
-}
-</style>
-<br>
-<br>
-
-<script>
-// ===== Scroll to Top ==== 
-$(window).scroll(function() {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('languageDropdown');
+    const langSelector = document.querySelector('.language-selector');
+    
+    if (!langSelector.contains(event.target)) {
+        dropdown.classList.remove('show');
     }
 });
-$('#return-to-top').click(function() {      // When arrow is clicked
-    $('body,html').animate({
-        scrollTop : 0                       // Scroll to top of body
-    }, 500);
+
+// Animation on scroll
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.animate-fade-in');
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial animation state
+    const elements = document.querySelectorAll('.animate-fade-in');
+    elements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+    
+    // Add scroll listener
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Initial animation check
+    animateOnScroll();
+});
+
+// Smooth scrolling for scroll indicator
+document.querySelector('.scroll-indicator').addEventListener('click', function() {
+    document.querySelector('.features-section').scrollIntoView({
+        behavior: 'smooth'
+    });
 });
 </script>
 
-<script>
-
-function randomNum2(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+<!-- Keep the original odometer scripts -->
+<style>
+.odometer {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--gold-primary);
 }
 
-
-
-var myInt = setInterval(function () {
-var size = document.getElementById("size").value || `180000`;
-var max2 = parseInt(size) + 2000
-var random2 = randomNum2(parseInt(size), parseInt(max2));
-
- odometer.innerHTML = random2
-}, 2000);
-
-
-
-
-</script>  
-<script>
-
-function randomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-size: 2.5rem;
 }
 
-var myInt = setInterval(function () {
+.odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-size: 2.5rem;
+}
 
-var size2 = document.getElementById("size2").value;
-var max = parseInt(size2) + 10
-var random = randomNum(parseInt(size2), parseInt(max));
- odometer2.innerHTML = random
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
+    display: inline-block;
+    vertical-align: middle;
+    visibility: hidden;
+    font-size: 2.5rem;
+}
 
-}, 2000);
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+    text-align: left;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    font-size: 2.5rem;
+}
 
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon {
+    display: block;
+}
 
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner {
+    display: block;
+    -webkit-backface-visibility: hidden;
+}
 
-</script> 
+.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value {
+    display: block;
+    -webkit-transform: translateZ(0);
+}
 
+.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value {
+    position: absolute;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner {
+    -webkit-transition: -webkit-transform 2s;
+    -moz-transition: -moz-transform 2s;
+    -ms-transition: -ms-transform 2s;
+    -o-transition: -o-transform 2s;
+    transition: transform 2s;
+}
+
+.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner {
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transform: translateY(100%);
+}
+</style>
+
+<script src="<%= domain %>/js/home-animations.js"></script>
 <script src='https://github.hubspot.com/odometer/odometer.js'></script>
-<%- include("partials/mainfooter") %>
 <%- include("partials/footer") %>
+</div>
