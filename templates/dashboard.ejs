@@ -1,113 +1,867 @@
 <%- include("partials/head", {bot, user, path, title: "cBot - Dashboard" }) %>
-<div class="content">
-  <h2>SELECT A SERVER</h2>
 
-  <% if (!userExists) { %>
-  <div
-    style="
-      width: 512px;
-      padding: 16px;
-      margin: 8px;
-      background-color: rgba(77, 77, 255, 0.05);
-    "
-  >
-    <h3
-      style="
-        color: #4d4dff;
-        margin-top: 0;
-        margin-bottom: 8px;
-        font-size: 18px;
-        font-family: 'Poppins', sans-serif;
-      "
-    >
-      Hey <%= user.username%>!
-    </h3>
-    <p
-      style="
-        margin: 0;
-        font-size: 14px;
-        font-family: 'Open Sans', sans-serif;
-        color: #555;
-      "
-    >
-      Looks like you aren't in cBot's Support Server.
-      <a href="/support">Join Here!</a>
-    </p>
-  </div>
-  <% } %>
+<div class="dashboard-page">
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <div class="dashboard-header">
+            <div class="header-content">
+                <div class="welcome-section">
+                    <h1 class="dashboard-title">Server Dashboard</h1>
+                    <p class="dashboard-subtitle">Manage your Discord servers with Cbot's powerful features</p>
+                </div>
+                
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value"><%= user.guilds.filter(guild => new perms(BigInt(guild.permissions)).has("MANAGE_GUILD")).length %></span>
+                            <span class="stat-label">Manageable Servers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value"><%= user.guilds.filter(guild => new perms(BigInt(guild.permissions)).has("MANAGE_GUILD") && bot.guilds.cache.get(guild.id)).length %></span>
+                            <span class="stat-label">Active Bots</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <div class="servers">
-    <% user.guilds.forEach(guild => { const permsOnGuild = new
-    perms(BigInt(guild.permissions)); if(!permsOnGuild.has("MANAGE_GUILD")) {
-    return } %> <% if (guild.icon) { iconurl =
-    "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon +
-    ".png??size=512"; } else { iconurl =
-    "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
-    } %> <% if (bot.guilds.cache.get(guild.id)) { %>
-    <div class="server">
-      <div class="icon-and-name">
-        <img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>" />
-        <p class="guild-name"><%= guild.name %></p>
-      </div>
-      <a class="edit button" href="/dashboard/<%= guild.id %>">Dashboard</a>
+        <!-- Support Server Notice -->
+        <% if (!userExists) { %>
+        <div class="support-notice">
+            <div class="notice-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="notice-content">
+                <h3>Join Our Support Server!</h3>
+                <p>Hey <%= user.username %>! Looks like you're not in Cbot's Support Server yet. Join us to get help, updates, and connect with the community!</p>
+                <a href="/support" class="notice-btn">
+                    <i class="fab fa-discord"></i>
+                    Join Support Server
+                </a>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- Servers Section -->
+        <div class="servers-section">
+            <div class="section-header">
+                <h2>Your Servers</h2>
+                <p>Select a server to access its dashboard and configure Cbot's features</p>
+            </div>
+
+            <!-- Active Servers -->
+            <div class="servers-category">
+                <h3 class="category-title">
+                    <i class="fas fa-check-circle"></i>
+                    Servers with Cbot
+                </h3>
+                
+                <div class="servers-grid">
+                    <% 
+                    let activeServers = user.guilds.filter(guild => {
+                        const permsOnGuild = new perms(BigInt(guild.permissions));
+                        return permsOnGuild.has("MANAGE_GUILD") && bot.guilds.cache.get(guild.id);
+                    });
+                    
+                    if (activeServers.length === 0) { %>
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>No Active Servers</h4>
+                            <p>Cbot isn't active in any of your manageable servers yet. Add the bot to start managing your community!</p>
+                        </div>
+                    <% } else {
+                        activeServers.forEach(guild => { 
+                            let iconurl;
+                            if (guild.icon) { 
+                                iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png?size=512"; 
+                            } else { 
+                                iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949"; 
+                            } %>
+                            
+                            <div class="server-card active">
+                                <div class="server-header">
+                                    <img class="server-icon" src="<%= iconurl %>" alt="<%= guild.name %>">
+                                    <div class="server-status">
+                                        <span class="status-indicator online"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="server-info">
+                                    <h4 class="server-name"><%= guild.name %></h4>
+                                    <p class="server-status-text">Bot Active</p>
+                                </div>
+                                
+                                <div class="server-actions">
+                                    <a href="/dashboard/<%= guild.id %>" class="action-btn primary">
+                                        <i class="fas fa-cog"></i>
+                                        Configure
+                                    </a>
+                                </div>
+                            </div>
+                        <% }); 
+                    } %>
+                </div>
+            </div>
+
+            <!-- Inactive Servers -->
+            <% 
+            let inactiveServers = user.guilds.filter(guild => {
+                const permsOnGuild = new perms(BigInt(guild.permissions));
+                return permsOnGuild.has("MANAGE_GUILD") && !bot.guilds.cache.get(guild.id);
+            });
+            
+            if (inactiveServers.length > 0) { %>
+                <div class="servers-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Cbot to These Servers
+                    </h3>
+                    
+                    <div class="servers-grid">
+                        <% inactiveServers.forEach(guild => { 
+                            let iconurl;
+                            if (guild.icon) { 
+                                iconurl = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ".png?size=512"; 
+                            } else { 
+                                iconurl = "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949"; 
+                            } %>
+                            
+                            <div class="server-card inactive">
+                                <div class="server-header">
+                                    <img class="server-icon" src="<%= iconurl %>" alt="<%= guild.name %>">
+                                    <div class="server-status">
+                                        <span class="status-indicator offline"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="server-info">
+                                    <h4 class="server-name"><%= guild.name %></h4>
+                                    <p class="server-status-text">Bot Not Added</p>
+                                </div>
+                                
+                                <div class="server-actions">
+                                    <a href="<%= `${https}discordapp.com/oauth2/authorize?client_id=${clientID}&scope=bot%20applications.commands&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${domain}/callback`)}&permissions=1642761419863` %>" 
+                                       class="action-btn secondary">
+                                        <i class="fas fa-plus"></i>
+                                        Add Bot
+                                    </a>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="actions-grid">
+                <a href="/invite" class="quick-action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Invite Bot</h4>
+                        <p>Add Cbot to a new server</p>
+                    </div>
+                </a>
+                
+                <a href="/premium" class="quick-action-card premium">
+                    <div class="action-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Get Premium</h4>
+                        <p>Unlock advanced features</p>
+                    </div>
+                </a>
+                
+                <a href="/support" class="quick-action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Get Support</h4>
+                        <p>Need help? Join our server</p>
+                    </div>
+                </a>
+                
+                <a href="/commands" class="quick-action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div class="action-content">
+                        <h4>Commands</h4>
+                        <p>View all available commands</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-    <% } %> <% }); %> <% user.guilds.forEach(guild => { const permsOnGuild = new
-    perms(BigInt(guild.permissions)); if(!permsOnGuild.has("MANAGE_GUILD")) {
-    return } %> <% if (guild.icon) { iconurl =
-    "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon +
-    ".png??size=512"; } else { iconurl =
-    "https://cdn.glitch.com/82fe990a-7942-42e3-9790-39807ccdb9f6%2Ficon-404-dark.png?v=1602427904949";
-    } %> <% if (!bot.guilds.cache.get(guild.id)) { %>
-    <div class="server">
-      <div class="icon-and-name">
-        <img class="server-icon" src="<%= iconurl %>" alt="<% guild.name %>" />
-        <p class="guild-name"><%= guild.name %></p>
-      </div>
-      <a
-        href="<%= `${https}discordapp.com/oauth2/authorize?client_id=${clientID}&scope=bot%20applications.commands&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(`${domain}/callback`)}&permissions=1642761419863` %>"
-        class="add button"
-        >Add Bot</a
-      >
-    </div>
-    <% } %> <% }); %>
-  </div>
+</div>
 
-  <%- include("partials/footer") %>
-  <script>
-    function PopupCenter(e, n, t, i) {
-      var o = void 0 != window.screenLeft ? window.screenLeft : screen.left,
+<%- include("partials/footer") %>
+
+<style>
+/* Dashboard Styles */
+.dashboard-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0e1a 0%, #101628 100%);
+    padding-top: 90px;
+    color: #ffffff;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header Section */
+.dashboard-header {
+    margin-bottom: 40px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 32px;
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border-radius: 16px;
+    border: 1px solid #2c3244;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-subtitle {
+    font-size: 1.125rem;
+    color: #b9bbbe;
+    margin: 0;
+}
+
+.stats-overview {
+    display: flex;
+    gap: 24px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(88, 101, 242, 0.1);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 12px;
+    min-width: 160px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #5865f2;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #b9bbbe;
+    margin-top: 4px;
+}
+
+/* Support Notice */
+.support-notice {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(250, 166, 26, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+    border: 1px solid rgba(250, 166, 26, 0.2);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.notice-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.notice-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #faa61a;
+    margin: 0 0 8px 0;
+}
+
+.notice-content p {
+    color: #b9bbbe;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.notice-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.notice-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(250, 166, 26, 0.3);
+}
+
+/* Servers Section */
+.servers-section {
+    margin-bottom: 48px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    color: #b9bbbe;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.servers-category {
+    margin-bottom: 40px;
+}
+
+.category-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #2c3244;
+}
+
+.category-title i {
+    color: #5865f2;
+}
+
+.servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Server Cards */
+.server-card {
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 1px solid #2c3244;
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.server-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.server-card.active:before {
+    background: linear-gradient(135deg, #3ba55d 0%, #2d8a47 100%);
+}
+
+.server-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+
+.server-card:hover:before {
+    opacity: 1;
+}
+
+.server-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.server-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    border: 2px solid #2c3244;
+    transition: all 0.3s ease;
+}
+
+.server-card:hover .server-icon {
+    border-color: #5865f2;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+}
+
+.server-status {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+.status-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid #1e2439;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.status-indicator.online {
+    background: #3ba55d;
+    box-shadow: 0 0 12px rgba(59, 165, 93, 0.5);
+}
+
+.status-indicator.offline {
+    background: #72767d;
+}
+
+.server-info {
+    margin-bottom: 20px;
+}
+
+.server-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.server-status-text {
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.server-card.active .server-status-text {
+    color: #3ba55d;
+}
+
+.server-card.inactive .server-status-text {
+    color: #72767d;
+}
+
+.server-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    color: white;
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(88, 101, 242, 0.4);
+}
+
+.action-btn.secondary {
+    background: rgba(114, 118, 125, 0.2);
+    border: 1px solid #72767d;
+    color: #b9bbbe;
+}
+
+.action-btn.secondary:hover {
+    background: rgba(88, 101, 242, 0.1);
+    border-color: #5865f2;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 24px;
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 2px dashed #2c3244;
+    border-radius: 16px;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(114, 118, 125, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    color: #72767d;
+    font-size: 32px;
+}
+
+.empty-state h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+}
+
+.empty-state p {
+    color: #b9bbbe;
+    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Quick Actions */
+.quick-actions {
+    margin-bottom: 48px;
+}
+
+.quick-actions h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.quick-action-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 1px solid #2c3244;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-2px);
+    border-color: #5865f2;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.quick-action-card.premium {
+    background: linear-gradient(135deg, rgba(250, 166, 26, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+    border-color: rgba(250, 166, 26, 0.2);
+}
+
+.quick-action-card.premium:hover {
+    border-color: #faa61a;
+}
+
+.action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.quick-action-card.premium .action-icon {
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+}
+
+.action-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+}
+
+.action-content p {
+    font-size: 0.875rem;
+    color: #b9bbbe;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 0 16px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    
+    .stats-overview {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .stat-card {
+        flex: 1;
+        min-width: auto;
+    }
+    
+    .servers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .support-notice {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .notice-icon {
+        align-self: center;
+    }
+    
+    .dashboard-header .dashboard-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 24px 20px;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .server-card {
+        padding: 20px;
+    }
+    
+    .quick-action-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.server-card,
+.quick-action-card,
+.support-notice {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.server-card:nth-child(1) { animation-delay: 0.1s; }
+.server-card:nth-child(2) { animation-delay: 0.15s; }
+.server-card:nth-child(3) { animation-delay: 0.2s; }
+.server-card:nth-child(4) { animation-delay: 0.25s; }
+</style>
+
+<script>
+function PopupCenter(e, n, t, i) {
+    var o = void 0 != window.screenLeft ? window.screenLeft : screen.left,
         d = void 0 != window.screenTop ? window.screenTop : screen.top,
         c = window.innerWidth
-          ? window.innerWidth
-          : document.documentElement.clientWidth
-          ? document.documentElement.clientWidth
-          : screen.width,
+            ? window.innerWidth
+            : document.documentElement.clientWidth
+            ? document.documentElement.clientWidth
+            : screen.width,
         w = window.innerHeight
-          ? window.innerHeight
-          : document.documentElement.clientHeight
-          ? document.documentElement.clientHeight
-          : screen.height,
+            ? window.innerHeight
+            : document.documentElement.clientHeight
+            ? document.documentElement.clientHeight
+            : screen.height,
         r = c / 2 - t / 2 + o,
         h = w / 2 - i / 2 + d,
         s = window.open(
-          e,
-          n,
-          "scrollbars=yes, width=" +
-            t +
-            ", height=" +
-            i +
-            ", top=" +
-            h +
-            ", left=" +
-            r
+            e,
+            n,
+            "scrollbars=yes, width=" +
+                t +
+                ", height=" +
+                i +
+                ", top=" +
+                h +
+                ", left=" +
+                r
         );
-      window.focus && s.focus();
+    window.focus && s.focus();
+}
+
+// Add click animations
+document.addEventListener('DOMContentLoaded', function() {
+    const serverCards = document.querySelectorAll('.server-card');
+    const actionCards = document.querySelectorAll('.quick-action-card');
+    
+    serverCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('a')) {
+                const configureBtn = this.querySelector('.action-btn');
+                if (configureBtn) {
+                    configureBtn.click();
+                }
+            }
+        });
+    });
+    
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.action-btn, .notice-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+});
+
+// Add ripple animation CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
     }
-  </script>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;
-600&display=swap");
-    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;
-600&display=swap");
-  </style>
-</div>
+    
+    .action-btn,
+    .notice-btn {
+        position: relative;
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(style);
+</script>

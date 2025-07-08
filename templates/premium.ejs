@@ -1,968 +1,1213 @@
-<%- include("partials/head", { bot, user, path, description, title: "CBˣ - Premium",  url, image }) %>
+<%- include("partials/head", { bot, user, path, description, title: "Cbot - Premium",  url, image }) %>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,700'>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.5.0/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<div class="page-content">
-
-
-<body>
-
-
-<section>
-
-
-
-<h1 style="font-size: 64px; text-align: center; padding-top: 200px; color: white; font-family: 'Cairo', sans-serif">PREMIUM</h1>
-<h4 style="font-size: 34px; text-align: center; color: white;">Take your server to a next level</h4>
-  
-
-<div style="padding-top: 60px"></div>
-
-      <button type="button" id="switch" class="btn btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-        <div class="handle"></div>
-      </button>
-
-
-<div class="con-items ">
-
-        <div class="item item1" >
-        
-            <header>
-
-      
- <span style="color: yellow; padding-bottom: 50px; font-size: 10px" class="icon icon-default"><i class="fas fa-star fa-fw fa-5x"></i></span>
-                <p>1 Premium Server</p>
+<div class="premium-page">
+    <!-- Hero Section -->
+    <section class="premium-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="premium-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                </div>
                 
-
-                <h3 id="1">2.99$/month</h3>
-               
+                <h1 class="hero-title">Unlock the Full Power of Cbot</h1>
+                <p class="hero-description">
+                    Take your Discord server to the next level with advanced features, unlimited customization, 
+                    and priority support that makes managing your community effortless.
+                </p>
                 
-            </header>
-           <div style="padding-top: 50px;"></div>
-            <button onclick="window.location.href='https://www.paypal.me/hasanahmad178'">
-               Purchase
-            </button>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">10,000+</span>
+                        <span class="stat-label">Premium Servers</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">24/7</span>
+                        <span class="stat-label">Support</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-feature feature-1">
+                    <i class="fas fa-rocket"></i>
+                    <span>Lightning Fast</span>
+                </div>
+                <div class="floating-feature feature-2">
+                    <i class="fas fa-infinity"></i>
+                    <span>Unlimited Commands</span>
+                </div>
+                <div class="floating-feature feature-3">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Advanced Security</span>
+                </div>
+                <div class="premium-crown">
+                    <i class="fas fa-crown"></i>
+                </div>
+            </div>
         </div>
-        <div class="item color item2">
-            <span class="badge">
-                Popular
-            </span>
-              <header>
+    </section>
 
-      
- <span style="color: yellow; padding-bottom: 50px; font-size: 8px" class="icon icon-default"><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i></span>
-                <p>3 Premium Servers</p>
-                <h3>
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Premium Plan</h2>
+                <p>Flexible pricing designed to grow with your community</p>
+                
+                <!-- Billing Toggle -->
+                <div class="billing-toggle">
+                    <span class="toggle-label">Monthly</span>
+                    <button class="toggle-btn" id="billingToggle">
+                        <span class="toggle-slider"></span>
+                    </button>
+                    <span class="toggle-label">
+                        Yearly 
+                        <span class="discount-badge">Save 20%</span>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="plan-name">Starter</h3>
+                        <p class="plan-description">Perfect for small communities</p>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <span class="currency">$</span>
+                        <span class="price" data-monthly="2.99" data-yearly="2.39">2.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>1 Premium Server</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>50 Custom Commands</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Logging</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Priority Support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Embeds</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-btn" onclick="selectPlan('starter')">
+                        Get Started
+                    </button>
+                </div>
 
-               <h3 id="2">7.99$/month</h3>
-            </header>
-           <div style="padding-top: 50px;"></div>
-            <button onclick="window.location.href='https://www.paypal.me/hasanahmad178'">
-               Purchase
-            </button>
+                <!-- Popular Plan -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">
+                        <i class="fas fa-fire"></i>
+                        Most Popular
+                    </div>
+                    
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="plan-name">Professional</h3>
+                        <p class="plan-description">Ideal for growing communities</p>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <span class="currency">$</span>
+                        <span class="price" data-monthly="7.99" data-yearly="6.39">7.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>3 Premium Servers</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited Custom Commands</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Automod</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Ticket System</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Suggestions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Reports</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-btn primary" onclick="selectPlan('professional')">
+                        Get Professional
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="plan-name">Enterprise</h3>
+                        <p class="plan-description">For large communities</p>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <span class="currency">$</span>
+                        <span class="price" data-monthly="11.99" data-yearly="9.59">11.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>5 Premium Servers</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Professional</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>White-label Options</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>API Access</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Integrations</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated Support</span>
+                        </div>
+                    </div>
+                    
+                    <button class="plan-btn" onclick="selectPlan('enterprise')">
+                        Get Enterprise
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="item item3">
-              <header>
+    </section>
 
-      
- <span style="color: yellow; padding-bottom: 50px; font-size: 6px" class="icon icon-default"><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i><i class="fas fa-star fa-fw fa-5x"></i></span>
-                <p>5 Premium Servers</p>
-                <h3>
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Premium Features</h2>
+                <p>Discover what makes Cbot Premium the ultimate Discord bot solution</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-showcase">
+                    <div class="feature-image">
+                        <img src="<%= domain %>/premium/customcommands.jpg" alt="Custom Commands" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%235865f2%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2224%22>Custom Commands</text></svg>'">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3>Unlimited Custom Commands</h3>
+                        <p>Create powerful custom commands with our intuitive builder. Use variables, conditions, and embed responses to build exactly what your community needs.</p>
+                        <div class="feature-highlights">
+                            <span class="highlight">Advanced Variables</span>
+                            <span class="highlight">Conditional Logic</span>
+                            <span class="highlight">Rich Embeds</span>
+                        </div>
+                    </div>
+                </div>
 
-                <h3 id="3">11.99$/month</h3>
-            </header>
-           <div style="padding-top: 50px;"></div>
-            <button onclick="window.location.href='https://www.paypal.me/hasanahmad178'">
-               Purchase
-            </button>
+                <div class="feature-showcase reverse">
+                    <div class="feature-image">
+                        <img src="<%= domain %>/premium/reports.JPG" alt="Server Reports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%2300d4aa%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2224%22>Server Reports</text></svg>'">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <h3>Advanced Report System</h3>
+                        <p>Streamline moderation with a comprehensive reporting system featuring upvotes, categories, and automated workflows for faster resolution.</p>
+                        <div class="feature-highlights">
+                            <span class="highlight">Report Categories</span>
+                            <span class="highlight">Upvote System</span>
+                            <span class="highlight">Auto-actions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-showcase">
+                    <div class="feature-image">
+                        <img src="<%= domain %>/premium/suggestions.jpg" alt="Suggestions" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23faa61a%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2224%22>Suggestions</text></svg>'">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Customizable Suggestions</h3>
+                        <p>Engage your community with a beautiful suggestion system. Customize colors, reactions, and approval workflows to match your server's style.</p>
+                        <div class="feature-highlights">
+                            <span class="highlight">Custom Styling</span>
+                            <span class="highlight">Approval System</span>
+                            <span class="highlight">Multiple Reactions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-showcase reverse">
+                    <div class="feature-image">
+                        <img src="<%= domain %>/premium/tickets.JPG" alt="Ticket System" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23ed4245%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2224%22>Ticket System</text></svg>'">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h3>Advanced Ticket System</h3>
+                        <p>Provide exceptional support with a feature-rich ticket system. Multiple categories, auto-responses, and transcript saving keep you organized.</p>
+                        <div class="feature-highlights">
+                            <span class="highlight">Multiple Categories</span>
+                            <span class="highlight">Auto-responses</span>
+                            <span class="highlight">Transcript Saving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Additional Features -->
+    <section class="additional-features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Even More Premium Benefits</h2>
+                <p>Unlock the full potential of your Discord server</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h4>Unlimited Everything</h4>
+                    <p>No limits on custom commands, auto-responses, or configurations</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4>Advanced Moderation</h4>
+                    <p>AI-powered automod with smart detection and custom actions</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Detailed Analytics</h4>
+                    <p>Track server growth, engagement, and bot usage with comprehensive stats</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>Priority Support</h4>
+                    <p>Get help when you need it with dedicated premium support</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>API Access</h4>
+                    <p>Integrate with external services and build custom applications</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Early Access</h4>
+                    <p>Be the first to try new features before they're released to everyone</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h1 style="font-size: 64px; text-align: center; padding-top: 200px; color: white; font-family: 'Cairo', sans-serif">Features</h1>
-<div class="content-container">
-  			<div id="os2" class="product-row">
-  				<div class="product-image"><img src="<%domain%>/premium/customcommands.jpg"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Custom Commands</h2>
-  					<p>With Pxx Premium you can have <strong>UNLIMITED custom Commands</strong>! These Commands can be made directly from Pxx's Embed builder.</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%domain%>/premium/reports.JPG"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Server Reports</h2>
-  						<p>Fully Customizable Server Reports with Report Upvotes!</p>
-  				</div>
-  			</div>
-
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%domain%>/premium/suggestions.jpg"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Customizable Suggestions</h2>
-  					<p>You even have the ability to customize the suggestion Embed on your own including the color, description, footer and even reaction!</p>
-  				</div>
-  			</div>
-  			<div class="product-row">
-  				<div class="product-image"><img src="<%domain%>/premium/tickets.JPG"></div>
-  				<div class="product-text">
-  					<h2 class="product-title">Server Tickets</h2>
-  					<p>Last but not least, you can add up to 10 different reactions on your customized ticket Embed!</p>
-  				</div>
-  			</div>
-  </div>
-
-<div class="extra">
-<h1 style="padding-bottom: 20px">Still not convinced?</h1>
-<ul style="list-style: square;">
-<li>• The ability to Approve and Decline Applications</li>
-<li>• Set up Unlimited Auto Responses</li>
-<li>• Set up unlimited Custom Commands</li>
-<li>• White list over 50 accounts with the alt detector module</li>
-</ul>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Upgrade?</h2>
+                <p>Join thousands of server owners who have already upgraded to Premium</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn primary" onclick="selectPlan('professional')">
+                        <i class="fas fa-crown"></i>
+                        Start Premium Today
+                    </button>
+                    <a href="/support" class="cta-btn secondary">
+                        <i class="fas fa-question-circle"></i>
+                        Have Questions?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-</section>
 
-
-
-</body>
-
-</div>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
-body {
- font-family: 'Montserrat', 'Lato', 'Open Sans', 'Helvetica Neue', Helvetica, Calibri, Arial, sans-serif;
-        --primary: 25,91,255;
-        --color: 44, 62, 80;
-        --bg: 255, 255, 255;
-        --red: 255, 0, 78;
-        overflow: auto;
-        color: black;
-        width: 100%;
-    }
-    * {
-        list-style: none;
-        outline: none;
-        padding: 0;
-        margin: 0;
-        font-family: 'Open Sans', sans-serif;
-        box-sizing: border-box;
-    }
-    b {
-        padding: 0px 4px;
-        display: inline-block;
-    }
-.extra {
-padding-top: 40px;
-text-align: left;
-padding-left: 20px;
-}
-.btn-toggle {
-  margin: 0 4rem;
-  padding: 0;
-  position: relative;
-  border: none;
-  height: 1.5rem;
-  width: 3rem;
-  border-radius: 1.5rem;
-  color: #6b7381;
-  background: #bdc1c8;
-}
-.btn-toggle:focus,
-.btn-toggle.focus,
-.btn-toggle:focus.active,
-.btn-toggle.focus.active {
-  outline: none;
-}
-.btn-toggle:before,
-.btn-toggle:after {
-  line-height: 1.5rem;
-  width: 4rem;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.90rem;
-  letter-spacing: 2px;
-  position: absolute;
-  bottom: 0;
-  transition: opacity 0.25s;
-}
-.btn-toggle:before {
-  content: 'Monthly ';
-  font-size: 20px;
-  left: -8rem;
-
+/* Premium Page Styles */
+.premium-page {
+    background: linear-gradient(135deg, #0a0e1a 0%, #101628 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding-top: 80px;
 }
 
-.btn-toggle:after {
-  content: 'Yearly';
-  right: -6rem;
-  font-size: 20px;
+/* Hero Section */
+.premium-hero {
+    padding: 80px 0 120px;
+    position: relative;
+    overflow: hidden;
+}
 
-  opacity: 0.5;
-}
-.btn-toggle > .handle {
-  position: absolute;
-  top: 0.1875rem;
-  left: 0.1875rem;
-  width: 1.125rem;
-  height: 1.125rem;
-  border-radius: 1.125rem;
-  background: #fff;
-  transition: left 0.25s;
-}
-.btn-toggle.active {
-  transition: background-color 0.25s;
-}
-.btn-toggle.active > .handle {
-  left: 1.6875rem;
-  transition: left 0.25s;
-}
-.btn-toggle.active:before {
-  opacity: 0.5;
-}
-.btn-toggle.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-sm:before,
-.btn-toggle.btn-sm:after {
-  line-height: -0.5rem;
-  color: #fff;
-  letter-spacing: 0.75px;
-  left: 0.4125rem;
-  width: 2.325rem;
-}
-.btn-toggle.btn-sm:before {
-  text-align: right;
-}
-.btn-toggle.btn-sm:after {
-  text-align: left;
-  opacity: 0;
-}
-.btn-toggle.btn-sm.active:before {
-  opacity: 0;
-}
-.btn-toggle.btn-sm.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-xs:before,
-.btn-toggle.btn-xs:after {
-  display: none;
-}
-.btn-toggle:before,
-.btn-toggle:after {
-  color: #6b7381;
-}
-.btn-toggle.active {
-  background-color: #29b5a8;
-}
-.btn-toggle.btn-lg {
-  margin: 0 5rem;
-  padding: 0;
-  position: relative;
-  border: none;
-  height: 2.5rem;
-  width: 5rem;
-  border-radius: 2.5rem;
-}
-.btn-toggle.btn-lg:focus,
-.btn-toggle.btn-lg.focus,
-.btn-toggle.btn-lg:focus.active,
-.btn-toggle.btn-lg.focus.active {
-  outline: none;
-}
-.btn-toggle.btn-lg:before,
-.btn-toggle.btn-lg:after {
-  line-height: 2.5rem;
-  width: 5rem;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  position: absolute;
-  bottom: 0;
-  transition: opacity 0.25s;
-}
-.btn-toggle.btn-lg:before {
-  content: 'Off';
-  left: -5rem;
-}
-.btn-toggle.btn-lg:after {
-  content: 'On';
-  right: -5rem;
-  opacity: 0.5;
-}
-.btn-toggle.btn-lg > .handle {
-  position: absolute;
-  top: 0.3125rem;
-  left: 0.3125rem;
-  width: 1.875rem;
-  height: 1.875rem;
-  border-radius: 1.875rem;
-  background: #fff;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-lg.active {
-  transition: background-color 0.25s;
-}
-.btn-toggle.btn-lg.active > .handle {
-  left: 2.8125rem;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-lg.active:before {
-  opacity: 0.5;
-}
-.btn-toggle.btn-lg.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-lg.btn-sm:before,
-.btn-toggle.btn-lg.btn-sm:after {
-  line-height: 0.5rem;
-  color: #fff;
-  letter-spacing: 0.75px;
-  left: 0.6875rem;
-  width: 3.875rem;
-}
-.btn-toggle.btn-lg.btn-sm:before {
-  text-align: right;
-}
-.btn-toggle.btn-lg.btn-sm:after {
-  text-align: left;
-  opacity: 0;
-}
-.btn-toggle.btn-lg.btn-sm.active:before {
-  opacity: 0;
-}
-.btn-toggle.btn-lg.btn-sm.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-lg.btn-xs:before,
-.btn-toggle.btn-lg.btn-xs:after {
-  display: none;
-}
-.btn-toggle.btn-sm {
-  margin: 0 0.5rem;
-  padding: 0;
-  position: relative;
-  border: none;
-  height: 1.5rem;
-  width: 3rem;
-  border-radius: 1.5rem;
-}
-.btn-toggle.btn-sm:focus,
-.btn-toggle.btn-sm.focus,
-.btn-toggle.btn-sm:focus.active,
-.btn-toggle.btn-sm.focus.active {
-  outline: none;
-}
-.btn-toggle.btn-sm:before,
-.btn-toggle.btn-sm:after {
-  line-height: 1.5rem;
-  width: 0.5rem;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.55rem;
-  letter-spacing: 2px;
-  position: absolute;
-  bottom: 0;
-  transition: opacity 0.25s;
-}
-.btn-toggle.btn-sm:before {
-  content: 'Off';
-  left: -0.5rem;
-}
-.btn-toggle.btn-sm:after {
-  content: 'On';
-  right: -0.5rem;
-  opacity: 0.5;
-}
-.btn-toggle.btn-sm > .handle {
-  position: absolute;
-  top: 0.1875rem;
-  left: 0.1875rem;
-  width: 1.125rem;
-  height: 1.125rem;
-  border-radius: 1.125rem;
-  background: #fff;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-sm.active {
-  transition: background-color 0.25s;
-}
-.btn-toggle.btn-sm.active > .handle {
-  left: 1.6875rem;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-sm.active:before {
-  opacity: 0.5;
-}
-.btn-toggle.btn-sm.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-sm.btn-sm:before,
-.btn-toggle.btn-sm.btn-sm:after {
-  line-height: -0.5rem;
-  color: #fff;
-  letter-spacing: 0.75px;
-  left: 0.4125rem;
-  width: 2.325rem;
-}
-.btn-toggle.btn-sm.btn-sm:before {
-  text-align: right;
-}
-.btn-toggle.btn-sm.btn-sm:after {
-  text-align: left;
-  opacity: 0;
-}
-.btn-toggle.btn-sm.btn-sm.active:before {
-  opacity: 0;
-}
-.btn-toggle.btn-sm.btn-sm.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-sm.btn-xs:before,
-.btn-toggle.btn-sm.btn-xs:after {
-  display: none;
-}
-.btn-toggle.btn-xs {
-  margin: 0 0;
-  padding: 0;
-  position: relative;
-  border: none;
-  height: 1rem;
-  width: 2rem;
-  border-radius: 1rem;
-}
-.btn-toggle.btn-xs:focus,
-.btn-toggle.btn-xs.focus,
-.btn-toggle.btn-xs:focus.active,
-.btn-toggle.btn-xs.focus.active {
-  outline: none;
-}
-.btn-toggle.btn-xs:before,
-.btn-toggle.btn-xs:after {
-  line-height: 1rem;
-  width: 0;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  position: absolute;
-  bottom: 0;
-  transition: opacity 0.25s;
-}
-.btn-toggle.btn-xs:before {
-  content: 'Off';
-  left: 0;
-}
-.btn-toggle.btn-xs:after {
-  content: 'On';
-  right: 0;
-  opacity: 0.5;
-}
-.btn-toggle.btn-xs > .handle {
-  position: absolute;
-  top: 0.125rem;
-  left: 0.125rem;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 0.75rem;
-  background: #fff;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-xs.active {
-  transition: background-color 0.25s;
-}
-.btn-toggle.btn-xs.active > .handle {
-  left: 1.125rem;
-  transition: left 0.25s;
-}
-.btn-toggle.btn-xs.active:before {
-  opacity: 0.5;
-}
-.btn-toggle.btn-xs.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-xs.btn-sm:before,
-.btn-toggle.btn-xs.btn-sm:after {
-  line-height: -1rem;
-  color: #fff;
-  letter-spacing: 0.75px;
-  left: 0.275rem;
-  width: 1.55rem;
-}
-.btn-toggle.btn-xs.btn-sm:before {
-  text-align: right;
-}
-.btn-toggle.btn-xs.btn-sm:after {
-  text-align: left;
-  opacity: 0;
-}
-.btn-toggle.btn-xs.btn-sm.active:before {
-  opacity: 0;
-}
-.btn-toggle.btn-xs.btn-sm.active:after {
-  opacity: 1;
-}
-.btn-toggle.btn-xs.btn-xs:before,
-.btn-toggle.btn-xs.btn-xs:after {
-  display: none;
-}
-.btn-toggle.btn-secondary {
-  color: #6b7381;
-  background: #bdc1c8;
-}
-.btn-toggle.btn-secondary:before,
-.btn-toggle.btn-secondary:after {
-  color: #6b7381;
-}
-.btn-toggle.btn-secondary.active {
-  background-color: #266310;
-}
-    .con-items {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.premium-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(250, 166, 26, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(88, 101, 242, 0.1) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.premium-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: #b9bbbe;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border-radius: 16px;
+    border: 1px solid #2c3244;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #faa61a;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #b9bbbe;
+    margin-top: 4px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: #2c3244;
+}
+
+/* Hero Visual */
+.hero-visual {
+    position: relative;
+    height: 500px;
+}
+
+.floating-feature {
+    position: absolute;
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 1px solid #2c3244;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-feature i {
+    color: #faa61a;
+    font-size: 1.25rem;
+}
+
+.floating-feature span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.feature-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.feature-2 {
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.feature-3 {
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.premium-crown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 16px 64px rgba(250, 166, 26, 0.4);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.premium-crown i {
+    font-size: 4rem;
+    color: white;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 16px 64px rgba(250, 166, 26, 0.4); }
+    50% { box-shadow: 0 16px 64px rgba(250, 166, 26, 0.6); }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: #b9bbbe;
+}
+
+/* Pricing Section */
+.pricing-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #101628 0%, #1a1f35 100%);
+}
+
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.toggle-label {
+    font-weight: 600;
+    color: #b9bbbe;
+    transition: color 0.3s ease;
+}
+
+.toggle-label.active {
+    color: #ffffff;
+}
+
+.toggle-btn {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #2c3244;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #faa61a;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn.active .toggle-slider {
+    transform: translateX(30px);
+}
+
+.discount-badge {
+    background: linear-gradient(135deg, #3ba55d 0%, #2d8a47 100%);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 60px;
+}
+
+/* Pricing Cards */
+.pricing-card {
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 1px solid #2c3244;
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 64px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card.popular {
+    border-color: #faa61a;
+    box-shadow: 0 0 40px rgba(250, 166, 26, 0.2);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.plan-header {
+    margin-bottom: 32px;
+}
+
+.plan-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 2rem;
+    color: white;
+}
+
+.pricing-card.popular .plan-icon {
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.plan-description {
+    color: #b9bbbe;
+    font-size: 1rem;
+}
+
+.plan-pricing {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.currency {
+    font-size: 1.5rem;
+    color: #b9bbbe;
+    margin-right: 4px;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.period {
+    font-size: 1rem;
+    color: #b9bbbe;
+    margin-left: 4px;
+}
+
+.plan-features {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    color: #b9bbbe;
+}
+
+.feature-item i {
+    color: #3ba55d;
+    font-size: 0.875rem;
+    width: 16px;
+}
+
+.plan-btn {
+    width: 100%;
+    padding: 16px 24px;
+    border: 2px solid #2c3244;
+    border-radius: 12px;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+    border-color: #5865f2;
+    background: rgba(88, 101, 242, 0.1);
+}
+
+.plan-btn.primary {
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    border-color: #faa61a;
+    color: white;
+}
+
+.plan-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(250, 166, 26, 0.4);
+}
+
+/* Features Section */
+.features-section {
+    padding: 120px 0;
+}
+
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.feature-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.feature-showcase.reverse {
+    direction: rtl;
+}
+
+.feature-showcase.reverse > * {
+    direction: ltr;
+}
+
+.feature-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2);
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-content {
+    max-width: 500px;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.feature-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.feature-content p {
+    font-size: 1.125rem;
+    color: #b9bbbe;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.feature-highlights {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.highlight {
+    padding: 6px 12px;
+    background: rgba(88, 101, 242, 0.1);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #5865f2;
+    font-weight: 500;
+}
+
+/* Additional Features */
+.additional-features {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #101628 0%, #1a1f35 100%);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, #1e2439 0%, #252b42 100%);
+    border: 1px solid #2c3244;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+    border-color: #5865f2;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5865f2 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.benefit-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    color: #b9bbbe;
+    line-height: 1.5;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 120px 0;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(250, 166, 26, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0e1a 0%, #101628 100%);
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #b9bbbe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-content p {
+    font-size: 1.125rem;
+    color: #b9bbbe;
+    margin-bottom: 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.cta-btn.primary {
+    background: linear-gradient(135deg, #faa61a 0%, #f39c12 100%);
+    color: white;
+}
+
+.cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(250, 166, 26, 0.4);
+}
+
+.cta-btn.secondary {
+    background: transparent;
+    border-color: #2c3244;
+    color: #b9bbbe;
+}
+
+.cta-btn.secondary:hover {
+    border-color: #5865f2;
+    color: #ffffff;
+    background: rgba(88, 101, 242, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .premium-page {
+        padding-top: 60px;
     }
-    .item {
-        width: 360px;
-        background: #B38301;
-        box-shadow: 0px 5px 30px 0px rgba(0,0,0,.05);
-        border-radius: 40px;
-        margin: 0px;
-        padding: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
         flex-direction: column;
-        transition: all .25s ease;
-        position: relative;
+        gap: 16px;
     }
-    .item:not(.color):hover{
-        transform: scale(1.05);
+    
+    .stat-divider {
+        width: 80px;
+        height: 1px;
     }
-    .item:hover .con-img{
-        transform: scale(1.15);
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
     }
-    .item.color:hover {
-        transform: scale(1.15);
+    
+    .feature-showcase {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
-    .con-img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all .25s ease;
+    
+    .feature-showcase.reverse {
+        direction: ltr;
     }
-    .con-img img {
-        width: 130px;
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
     }
-    .item1 {
-        padding-right: 45px;
-    }
-    .item2 {
-        z-index: 100;
-    }
-    .item3 {
-        padding-left: 45px;
-    }
-    .item.color {
-        background: #2f2f2f;
-        color: #fff;
-        transform: scale(1.1);
-        border: 3px solid #fff
-    }
-    .item.color li {
-        color: rgba(255,255,255,.75);
-    }
-    .item.color li b {
-        color: rgba(255,255,255,1);
-    }
-    .item.color li i {
-        color: rgba(255,255,255,1);
-    }
-    .item header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+    .cta-buttons {
         flex-direction: column;
-        position: relative;
-        width: 100%;
+        align-items: center;
     }
-    .item header h3 {
+}
+
+@media (max-width: 480px) {
+    .hero-title {
         font-size: 2rem;
     }
-    .item header p {
-        font-size: 1.2rem;
+    
+    .pricing-card {
+        padding: 32px 24px;
     }
-    .badge {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: #ffff00;
-        padding: 5px 10px;
-        border-radius: 12px;
-        color: #2f2f2f;
-        font-weight: bold;
-        font-size: .85rem;
+    
+    .section-header h2 {
+        font-size: 2rem;
     }
-    .item ul {
-        padding: 20px 0px;
-        flex: 1;
-        width: 100%;
+    
+    .feature-content h3 {
+        font-size: 1.5rem;
     }
-    .item ul li {
-        width: 100%;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: left;
-        color: #fff
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    .item ul li b {
-        color: red
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    .item ul li i {
-        font-size: 1.6rem;
-        margin-right: 15px;
-        color: rgb(var(--color), 1)
-    }
-    .item button {
-        padding: 14px 20px;
-        width: 100%;
-        background: #222222;
-        border: 3px solid transparent;
-        border-radius: 20px;
-        color: #fff;
-        font-weight: bold;
-        font-size: 1.1rem;
-        box-shadow: 0px 10px 25px 0px #2f2f2f;
-        cursor: pointer;
-        transition: all .25s ease;
-    }
-    .item button:not(.border):hover {
-        transform: translate(0,5px);
-        box-shadow: 0px 0px 0px 0px 2f2f2f;
-    }
-    .item button.border {
-        border: 3px solid #fff;
-    }
-    .item button.border:hover {
-        background: #2f2f2f;
-        color: #fff;
-    }
-#myBtn {
-  width: 10px;
-  height: 10px;
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background: url("https://i.imgur.com/QjfkQ9K.png");
-  transform: translateY(-15px);
-  -webkit-transition: all 250ms linear;
-  transition: all 250ms linear;
-  cursor: pointer;
-  padding: 15px;
 }
 
-#myBtn:hover {
-bottom: 32px;
-}
-/* #images
-================================================== */
-
-
- img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  border-radius: 0.6em;
-}
-@keyframes hover {
-  0%   {top: 0px;}
-  50%  {top: 50px;}
-  100% {top: 0px;}
-}
-.content-container {
-  width: 100%;
-  max-width: 1150px;
-  padding: 0 20px;
-  margin: 0 auto;
-}
- .product-row {
-  padding: 120px 0 0;
-  height: 60vh;
-  -webkit-box-align: center;
-          align-items: center;
-}
- .product-row .product-image {
-  width: 70%;
-  margin: 0 auto;
-}
- .product-row .product-image:hover {
-	transform: scale(1.1);
+.pricing-card,
+.benefit-card,
+.feature-showcase {
+    animation: fadeInUp 0.8s ease forwards;
 }
 
-
-
-.product-row .product-text {
-
-  background: transparent;
-  width: 90%;
-  margin: 10px auto;
-  text-align: center;
-}
- .product-row .product-title {
-  font-size: 2em;
-  color: #ffffff;
-  font-weight: 700;
-}
- .product-row p {
-  line-height: 1.5;
-  font-size: 1.2em;
-}
-.product-row {
-  margin: 1em 0;
-}
-
-.product-row::after {
-  content: "";
-  display: block;
-  clear: both;
-  float: none;
-}
-.product-row:nth-child(odd) {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-          flex-direction: row-reverse;
-}
-@media only screen and (min-width: 800px) {
-
-.product-row:nth-child(odd) .product-image {
-    padding-left: 5%;
-    padding-right: 0;
-  }
-.product-row {
-    display: -webkit-box;
-    display: flex;
-    margin-bottom: 0;
-    min-height: 380px;
-    -webkit-box-align: center;
-            align-items: center;
-  }
-.product-row .product-image {
-    width: 55%;
-    float: left;
-    -webkit-box-flex: 1;
-            flex: 1 1 55%;
-    padding-right: 5%;
-    max-width: 55% !important;
-    min-width: 320px;
-  }
-.product-row .product-text {
-    position: relative;
-    width: 45%;
-    text-align: left;
-    float: right;
-    -webkit-box-flex: 1;
-            flex: 1 1 45%;
-    max-width: 45%;
-  }
- .product-row .product-text {
-    margin-right: 1em;
-  }
-}
-
-
-
-.btn {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border-radius: 0.6em;
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 1;
-  margin: 40px 30px;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 700;
-}
-.btn:hover, .btn:focus {
-  color: rgb(99, 49, 49);
-  outline: 0;
-}
-
-.fourth {
-  height: 45px;
-  width: 250px;
-  border: 2px solid #ffffff;
-  color: #fff;
-  background-image: linear-gradient(45deg, #ffffff 50%, transparent 50%);
-  background-position: 100%;
-  background-size: 400%;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
-}
-.fourth:hover {
-  background-position: 0;
-}
-.section {
-  position: relative;
-  width: 100%;
-  display: block;
-}
-.over-hide {
-  overflow: hidden;
-}
-.full-height {
-  height: 100vh;
-}
-.login-button {
-  position: relative;
-  display: inline-block;
-  float: right;
-  margin-top: 37px;
-  margin-right: 10px;
-}
-
-.shadow-title {
-  position: fixed;
-  top: 0;
-  margin-top: 30px;
-  left: 20px;
-  width: 100%;
-  height: 300%;
-  text-align: left;
-  font-family: "Muli", sans-serif;
-  -webkit-writing-mode: vertical-lr;
-  writing-mode: vertical-lr;
-  font-size: 18vw;
-  line-height: 1;
-  color: rgba(200, 200, 200, 0.1);
-  background: linear-gradient(
-    90deg,
-    rgba(200, 200, 200, 0),
-    rgba(200, 200, 200, 0.35)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 900;
-  z-index: -1;
-}
-.section-parallax {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  z-index: -2;
-}
-.section.z-bigger {
-  z-index: 100;
-}
-.section.z-bigger-2 {
-  z-index: 200;
-}
-.section-title-wrap {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-  z-index: 3;
-}
-.section-title-wrap p {
-  letter-spacing: 2px;
-  font-size: 1.7em;
-  font-weight: 700;
-  padding: 0;
-  color: #ffffff;
-}
-.section-title-wrap h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 3.5vw;
-  letter-spacing: 8px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.padding-top-bottom {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-.background-dark {
-  background-color: #ffffff;
-}
+.pricing-card:nth-child(1) { animation-delay: 0.1s; }
+.pricing-card:nth-child(2) { animation-delay: 0.2s; }
+.pricing-card:nth-child(3) { animation-delay: 0.3s; }
 </style>
-<br>
-<br>
+
 <script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
+// Billing toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const billingToggle = document.getElementById('billingToggle');
+    const toggleLabels = document.querySelectorAll('.toggle-label');
+    const prices = document.querySelectorAll('.price');
+    
+    let isYearly = false;
+    
+    billingToggle.addEventListener('click', function() {
+        isYearly = !isYearly;
+        
+        // Toggle button state
+        billingToggle.classList.toggle('active');
+        
+        // Update label states
+        toggleLabels.forEach((label, index) => {
+            if ((index === 0 && !isYearly) || (index === 1 && isYearly)) {
+                label.classList.add('active');
+            } else {
+                label.classList.remove('active');
+            }
+        });
+        
+        // Update prices
+        prices.forEach(price => {
+            const monthlyPrice = price.dataset.monthly;
+            const yearlyPrice = price.dataset.yearly;
+            
+            if (isYearly) {
+                price.textContent = yearlyPrice;
+            } else {
+                price.textContent = monthlyPrice;
+            }
+        });
+    });
+    
+    // Initialize state
+    toggleLabels[0].classList.add('active');
+});
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+// Plan selection functionality
+function selectPlan(planType) {
+    // Here you can integrate with your payment system
+    console.log('Selected plan:', planType);
+    
+    // For now, redirect to PayPal (you can replace this with your payment integration)
+    const paymentUrls = {
+        starter: 'https://www.paypal.me/hasanahmad178/2.99',
+        professional: 'https://www.paypal.me/hasanahmad178/7.99',
+        enterprise: 'https://www.paypal.me/hasanahmad178/11.99'
+    };
+    
+    if (paymentUrls[planType]) {
+        window.open(paymentUrls[planType], '_blank');
+    }
 }
 
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 
-function topFunction() {
+// Add intersection observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-  document.body.scrollTop = 0; 
-  document.documentElement.scrollTop = 0; 
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+        }
+    });
+}, observerOptions);
 
-}
+document.querySelectorAll('.pricing-card, .benefit-card, .feature-showcase').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+});
 </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
-<%- include("partials/mainfooter") %>
+
 <%- include("partials/footer") %>
-
-<script>
-const button = document.getElementById("switch").onclick = function(){
-
-  var x = document.getElementById("1");
-  if (x.innerHTML === "2.99$/month") {
-    x.innerHTML = "29.99$/year";
-  } else {
-    x.innerHTML = "2.99$/month";
-  }
-
-    var x2 = document.getElementById("2");
-  if (x2.innerHTML === "7.99$/month") {
-    x2.innerHTML = "62.99$/year";
-  } else {
-    x2.innerHTML = "7.99$/month";
-  }
-
-      var x3 = document.getElementById("3");
-  if (x3.innerHTML === "11.99$/month") {
-    x3.innerHTML = "95.99$/year";
-  } else {
-    x3.innerHTML = "11.99$/month";
-  }
-
-}
-
-</script>
