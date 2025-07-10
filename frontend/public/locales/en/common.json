@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "premium": "Premium",
+    "docs": "Docs",
+    "support": "Support",
+    "login": "Login with Discord",
+    "logout": "Logout",
+    "addBot": "Add Bot",
+    "profile": "Profile",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Advanced Discord Bot",
+    "subtitle": "Complete Server Management",
+    "description": "Powerful moderation, security, and automation tools for Discord servers. Protect your community with advanced anti-raid, auto-moderation, and comprehensive logging.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "addToDiscord": "Add to Discord"
+  },
+  "features": {
+    "title": "Powerful Features",
+    "subtitle": "Everything you need to manage your Discord server",
+    "antiRaid": {
+      "title": "Anti-Raid Protection",
+      "description": "Advanced algorithms to detect and stop raids before they damage your server"
+    },
+    "autoMod": {
+      "title": "Auto Moderation",
+      "description": "Intelligent spam detection and automatic content filtering"
+    },
+    "logging": {
+      "title": "Comprehensive Logging",
+      "description": "Track all server activities with detailed logs and audit trails"
+    },
+    "customCommands": {
+      "title": "Custom Commands",
+      "description": "Create and manage custom commands for your server needs"
+    },
+    "roleManagement": {
+      "title": "Role Management",
+      "description": "Automated role assignment and permission management"
+    },
+    "multiLanguage": {
+      "title": "Multi-Language",
+      "description": "Support for multiple languages including Arabic, English, Spanish, and French"
+    }
+  },
+  "dashboard": {
+    "title": "Server Dashboard",
+    "selectServer": "Select a Server",
+    "noServers": "No servers found",
+    "overview": "Overview",
+    "moderation": "Moderation",
+    "logging": "Logging",
+    "automod": "Auto Moderation",
+    "commands": "Commands",
+    "roles": "Roles",
+    "welcome": "Welcome",
+    "security": "Security",
+    "premium": "Premium Features"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "enable": "Enable",
+    "disable": "Disable",
+    "configure": "Configure",
+    "test": "Test",
+    "reset": "Reset",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "close": "Close"
+  },
+  "messages": {
+    "success": "Success!",
+    "error": "Error occurred",
+    "loading": "Loading...",
+    "saved": "Settings saved successfully",
+    "unauthorized": "Unauthorized access",
+    "notFound": "Page not found",
+    "serverError": "Server error occurred"
+  },
+  "footer": {
+    "copyright": "© 2024 Discord Bot Platform. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us"
+  }
+}

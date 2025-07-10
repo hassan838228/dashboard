@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-dark-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-dark-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-dark-500;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  @apply font-arabic;
+}
+
+[dir="ltr"] {
+  @apply font-sans;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Discord-like animations */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #5865f2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button hover effects */
+.btn-primary {
+  @apply bg-discord-600 hover:bg-discord-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 dark:bg-dark-200 dark:hover:bg-dark-300 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+}
+
+/* Card animations */
+.card-hover {
+  @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent;
+}
+
+/* Custom focus styles */
+.focus-custom {
+  @apply focus:outline-none focus:ring-2 focus:ring-discord-500 focus:ring-offset-2 dark:focus:ring-offset-dark-100;
+}
+
+/* Backdrop blur for modals */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-dark-200 rounded;
+}
+
+/* Custom checkboxes and radio buttons */
+.checkbox-custom {
+  @apply w-4 h-4 text-discord-600 bg-gray-100 border-gray-300 rounded focus:ring-discord-500 dark:focus:ring-discord-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+}
+
+/* Toast notifications custom styles */
+.toast-success {
+  @apply bg-green-500 text-white;
+}
+
+.toast-error {
+  @apply bg-red-500 text-white;
+}
+
+.toast-warning {
+  @apply bg-yellow-500 text-black;
+}
+
+.toast-info {
+  @apply bg-blue-500 text-white;
+}
+
+/* Dashboard sidebar active link */
+.sidebar-link-active {
+  @apply bg-discord-600 text-white;
+}
+
+.sidebar-link {
+  @apply text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-200 hover:text-gray-900 dark:hover:text-white;
+}
+
+/* Statistics cards */
+.stat-card {
+  @apply bg-white dark:bg-dark-100 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-dark-200;
+}
+
+/* Form inputs */
+.input-custom {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-dark-300 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-dark-400 focus:outline-none focus:ring-discord-500 focus:border-discord-500 dark:bg-dark-100 dark:text-white;
+}
+
+/* Select dropdowns */
+.select-custom {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-dark-300 rounded-md shadow-sm focus:outline-none focus:ring-discord-500 focus:border-discord-500 dark:bg-dark-100 dark:text-white;
+}
+
+/* Mobile menu transitions */
+.mobile-menu-enter {
+  @apply opacity-0 scale-95;
+}
+
+.mobile-menu-enter-active {
+  @apply opacity-100 scale-100 transition-all duration-200 ease-out;
+}
+
+.mobile-menu-exit {
+  @apply opacity-100 scale-100;
+}
+
+.mobile-menu-exit-active {
+  @apply opacity-0 scale-95 transition-all duration-200 ease-in;
+}
+
+/* Server status indicators */
+.status-online {
+  @apply bg-green-500;
+}
+
+.status-offline {
+  @apply bg-red-500;
+}
+
+.status-idle {
+  @apply bg-yellow-500;
+}
+
+.status-dnd {
+  @apply bg-red-600;
+}

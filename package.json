@@ -1,0 +1,22 @@
+{
+  "name": "discord-bot-platform",
+  "version": "1.0.0",
+  "description": "Advanced Discord Bot with Dashboard and Multi-Language Support",
+  "main": "index.js",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:bot": "cd bot && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start",
+    "start:bot": "cd bot && npm start",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../bot && npm install",
+    "setup:env": "cp .env.example .env && cp backend/.env.example backend/.env && cp bot/.env.example bot/.env"
+  },
+  "keywords": ["discord", "bot", "dashboard", "moderation", "security"],
+  "author": "Discord Bot Platform",
+  "license": "MIT",
+  "workspaces": ["frontend", "backend", "bot"]
+}
